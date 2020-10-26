@@ -1,8 +1,14 @@
 -P-ID: friendlychat-9a087
 
--domain (later) friendlychat-9a087.firebaseapp.com
+-DOMAIN
+https://friendlychat-9a087.web.app
+oder
+friendlychat-9a087.firebaseapp.com
 
 -P-Num: 961129509203
+
+-Server-Key (Project Settings, Cloud Messaging): 
+AAAA38fIcVM:APA91bGmqUTXQloRy8i50NX7b5egytZRDjbOSN0yyy3OrPGQ-wYNLn7QX3M_yYFndZOkVbVXNmgGRiMHPd-3N8UPlXs5HE-ATx5kSN7ZFpIavtG20fX7ITWzzzogMHqNgOjkCM4YFRgL
 
 
 Understand Firebase projects:
@@ -21,8 +27,58 @@ Learn more about using project identifiers, especially the project number, in Go
 
 
 
+
+---
+deploy webapp
+firebase deploy --except functions
+---
+localhost:
+firebase serve --only hosting
+---
+
+
+
+
+
+
+
+
+
+
+
 The project ID displays in publicly visible Firebase resources, for example:
 
 Default Hosting subdomain — PROJECT_ID.web.app and PROJECT_ID.firebaseapp.com
 Default Realtime Database URL — PROJECT_ID.firebaseio.com
 Default Cloud Storage bucket name — PROJECT_ID.appspot.com
+
+
+
+
+
+
+
+
+
+
+
+device token:
+fu998eu-6ZsWkZEKM-lidr:APA91bHMx43dRw-MhbP3KWNKXTHZWGjnAZ2z88EUkjne6htrZRumgyeVBuKRwemLFV9Mum5tOxCywieva_ar2LnZnHO7NtLFq1VNa0mWNa2QrM4jRDl7j2yJTxOEBLGqP5Rcd3CFGAyi
+
+
+
+
+nicht funktioniert(benacheichtigungen):
+
+curl -H "Content-Type: application/json" \
+     -H "Authorization: key=AAAA38fIcVM:APA91bGmqUTXQloRy8i50NX7b5egytZRDjbOSN0yyy3OrPGQ-wYNLn7QX3M_yYFndZOkVbVXNmgGRiMHPd-3N8UPlXs5HE-ATx5kSN7ZFpIavtG20fX7ITWzzzogMHqNgOjkCM4YFRgL" \
+     -d '{
+           "notification": {
+             "title": "New chat message!",
+             "body": "There is a new message in FriendlyChat",
+             "icon": "/images/profile_placeholder.png",
+             "click_action": "http://localhost:5000"
+           },
+           "to": "fu998eu-6ZsWkZEKM-lidr:APA91bHMx43dRw-MhbP3KWNKXTHZWGjnAZ2z88EUkjne6htrZRumgyeVBuKRwemLFV9Mum5tOxCywieva_ar2LnZnHO7NtLFq1VNa0mWNa2QrM4jRDl7j2yJTxOEBLGqP5Rcd3CFGAyi"
+         }' \
+     https://fcm.googleapis.com/fcm/send
