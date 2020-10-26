@@ -15,24 +15,8 @@ Understand Firebase projects:
 https://firebase.google.com/docs/projects/learn-more
 
 
-A Firebase project (and its associated GCP project) has a project number. This is the Google-assigned globally unique canonical identifier for the project. 
-Use this identifier when configuring integrations and/or making API calls to Firebase, Google, or third-party services.
-
-API calls and the project number
-For many API calls, you need to include a unique identifier for a project. Although many APIs accept the project ID, 
-it's recommended that you use the project number for making API calls to Firebase, Google, or third-party services.
-
-Learn more about using project identifiers, especially the project number, in Google's AIP 2510 standard. --> https://google.aip.dev/cloud/2510
-
-
-
-
-
 ---
-deploy webapp
-firebase deploy --except functions
----
-localhost:
+LOCALHOST DEPLOY!!!:
 firebase serve --only hosting
 ---
 
@@ -41,6 +25,23 @@ firebase serve --only hosting
 
 
 
+---
+deploy webapp:
+firebase deploy --except functions
+
+
+
+
+
+
+A Firebase project (and its associated GCP project) has a project number. This is the Google-assigned globally unique canonical identifier for the project. 
+Use this identifier when configuring integrations and/or making API calls to Firebase, Google, or third-party services.
+
+API calls and the project number
+For many API calls, you need to include a unique identifier for a project. Although many APIs accept the project ID, 
+it's recommended that you use the project number for making API calls to Firebase, Google, or third-party services.
+
+Learn more about using project identifiers, especially the project number, in Google's AIP 2510 standard. --> https://google.aip.dev/cloud/2510
 
 
 
