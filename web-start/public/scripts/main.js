@@ -39,27 +39,47 @@ function getProfilePicUrl() {
   return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
 }
 
+
+
 // Returns the signed-in user's display name.
-function getUserName() {
-  return firebase.auth().currentUser.displayName;
-}
+  function getUserName() {
+    return firebase.auth().currentUser.displayName;
+  }
+
 
 // Returns true if a user is signed-in.
-function isUserSignedIn() {
-  return !!firebase.auth().currentUser;
-}
+  function isUserSignedIn() {
+    return !!firebase.auth().currentUser;
+  }
 
+
+// Saves a new message on the Firebase DB.
 // Saves a new message to your Cloud Firestore database.
-function saveMessage(messageText) {
-  // Add a new message entry to the database.
-  return firebase.firestore().collection('messages').add({
-    name: getUserName(),
-    text: messageText,
-    profilePicUrl: getProfilePicUrl(),
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  function saveMessage(messageText) {
+    // Add a new message entry to the database.
+    return firebase.firestore().collection('messages').add({
+      name: getUserName(),
+      text: messageText,
+      profilePicUrl: getProfilePicUrl(),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(function(error) {
+      console.error('Error writing new message to database', error);
+    });
+  }
+
+function loadData(){
+ // var docRef = db.collection("data").doc("plants");
+  document.write("welcome to Javatpoint");
+ /* docRef.get().then(function(doc) {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
   }).catch(function(error) {
-    console.error('Error writing new message to database', error);
-  });
+    console.log("Error getting document:", error);
+  });*/
 }
 
 // Loads chat messages history and listens for upcoming ones.
@@ -83,6 +103,8 @@ function loadMessages() {
     });
   });
 }
+
+
 
 // Saves a new message containing an image in Firebase.
 // This first saves the image in Firebase storage.
@@ -111,6 +133,7 @@ function saveImageMessage(file) {
   });
 }
 
+
 // Saves the messaging device token to the datastore.
 function saveMessagingDeviceToken() {
   firebase.messaging().getToken().then(function(currentToken) {
@@ -128,6 +151,7 @@ function saveMessagingDeviceToken() {
   });
 }
 
+
 // Requests permission to show notifications.
 function requestNotificationsPermissions() {
   console.log('Requesting notifications permission...');
@@ -138,8 +162,6 @@ function requestNotificationsPermissions() {
     console.error('Unable to get permission to notify.', error);
   });
 }
-
-// - - - - - - - - - - - - - -
 
 // Triggered when a file is selected via the media picker.
 function onMediaFileSelected(event) {
@@ -385,9 +407,9 @@ mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 // initialize Firebase
 initFirebaseAuth();
 
-// TODO: Enable Firebase Performance Monitoring.
 // TODO: Initialize Firebase Performance Monitoring.
 firebase.performance();
+
 
 // We load currently existing chat messages and listen to new ones.
 loadMessages();
