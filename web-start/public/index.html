@@ -1,224 +1,140 @@
 <!doctype html>
-<html lang="en-US">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Learn how to use the Firebase platform on the Web">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friendly Chat</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
 
-    <!-- Custom Css -->
-    <link rel="stylesheet" href="style.css" type="text/css" />
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
 
-    <!-- Ionic icons -->
-    <link href="https://unpkg.com/ionicons@4.2.0/dist/css/ionicons.min.css" rel="stylesheet">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Friendly Chat">
+  <meta name="theme-color" content="#303F9F">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Friendly Chat">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
 
-    <title>Green Data</title>
-  </head>
+  <!-- Tile icon for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-navbutton-color" content="#303F9F">
 
-  <body>
+  <!-- Material Design Lite -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
-  <!-- N A V B A R -->
-  <nav class="navbar navbar-default navbar-expand-lg fixed-top custom-navbar">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="icon ion-md-menu"></span>
-    </button>
-    <img src="images/logoe.png" class="img-fluid nav-logo-mobile" alt="Company Logo">
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <div class="container">
-      	<img src="images/logoe.png" class="img-fluid nav-logo-desktop" alt="Company Logo">
-        <ul class="navbar-nav ml-auto nav-right" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
-          <li class="nav-item nav-custom-link">
-            <a class="nav-link" href="index.html">Startseite <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
-          <li class="nav-item nav-custom-link">
-            <a class="nav-link" href="neuepflanze.html">Pflanze anlegen <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
-          <li class="nav-item nav-custom-link">
-            <a class="nav-link" href="pflanzendatenbank.html">Pflanzendatenbank <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
-          <li class="nav-item nav-custom-link">
-            <a class="nav-link" href="ueber.html">Über uns <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
-          <li class="nav-item nav-custom-link btn btn-demo-small">
-            <a class="nav-link" href="login.html">Einloggen <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
-        </ul>
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!-- TODO: Enable First Input Delay polyfill library. -->
+    <script type="text/javascript">!function(n,e){var t,o,i,c=[],f={passive:!0,capture:!0},r=new Date,a="pointerup",u="pointercancel";function p(n,c){t||(t=c,o=n,i=new Date,w(e),s())}function s(){o>=0&&o<i-r&&(c.forEach(function(n){n(o,t)}),c=[])}function l(t){if(t.cancelable){var o=(t.timeStamp>1e12?new Date:performance.now())-t.timeStamp;"pointerdown"==t.type?function(t,o){function i(){p(t,o),r()}function c(){r()}function r(){e(a,i,f),e(u,c,f)}n(a,i,f),n(u,c,f)}(o,t):p(o,t)}}function w(n){["click","mousedown","keydown","touchstart","pointerdown"].forEach(function(e){n(e,l,f)})}w(n),self.perfMetrics=self.perfMetrics||{},self.perfMetrics.onFirstInputDelay=function(n){c.push(n),s()}}(addEventListener,removeEventListener);</script>
+
+</head>
+<body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <!-- Header section containing logo -->
+  <header class="mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+        <h3><i class="material-icons">chat_bubble_outline</i> Friendly Chat</h3>
+      </div>
+      <div id="user-container">
+        <div hidden id="user-pic"></div>
+        <div hidden id="user-name"></div>
+        <button hidden id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+          Sign-out
+        </button>
+        <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+          <i class="material-icons">account_circle</i>Sign-in with Google
+        </button>
       </div>
     </div>
-  </nav>
-  <!-- E N D  N A V B A R -->
-  
-  <!-- H E R O -->
-  <section id="hero">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <img src="images/pflanze3.png" class="img-fluid" alt="Demo image">
-        </div>
-        <div class="col-md-7 content-box hero-content">
-          <span>Pflanzendatenbank</span>
-          <h1>Ein grüner Daumen mit <b>GREEN DATA</b></h1>
-          <p>Alle wichtigen Informationen über deine Pflanze - übersichtlich an einem Ort</p>
-          <a href="pflanzendatenbank.html" class="btn btn-regular">Zur Pflanzendatenbank</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- E N D  H E R O -->
+  </header>
 
-  <!-- E N D  M A R K E T I N G -->
-  <section id="marketing">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="content-box">
-            <span>Pflanze anlegen</span>
-            <h2>Eine neue Pflanze</h2>
-            <p>Neuen Pflanzen können jederzeit angelegt werden</p>
-            <a href="neuepflanze.html" class="btn btn-regular">Lege eine neue Pflanze an</a>
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
+
+      <!-- Messages container -->
+      <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <div id="messages">
           </div>
-        </div>
-        <div class="col-md-4">
-            <img src="images/bild6.jpg" class="img-fluid" alt="Demo image">
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- E N D  M A R K E T I N G -->
-
-  <!-- T E S T I M O N I A L S -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="title-block">
-        <h2>Was wir machen</h2>
-        <p>Überblick Green Data</p>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="testimonial-box">
-            <div class="row personal-info">
-              <div class="col-md-2 col-xs-2">
-                <div class="profile-picture review-one"></div>
-              </div>
-              <div class="col-md-10 col-xs-10">
-                <h6>Info 1 <span  <i class="icon ion-md-star"></i></span></h6>
-                <small>Pflanzen anlegen</small>
-              </div>
+          <form id="message-form" action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="message" autocomplete="off">
+              <label class="mdl-textfield__label" for="message">Message...</label>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque, tortor nec mattis feugiat, velit purus euismod odio, quis vulputate velit urna sit amet enim. Maecenas vulputate auctor ligula sed sollicitudin.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="testimonial-box">
-            <div class="row personal-info">
-              <div class="col-md-2 col-xs-2">
-                <div class="profile-picture review-one"></div>
-				
-              </div>
-              <div class="col-md-10 col-xs-10">
-                <h6>Info 2 <span <i class="icon ion-md-star"></i></span></h6>
-                <small>Datenbank</small>
-              </div>
-            </div>
-            <p>In euismod, metus ac elementum tincidunt, dui eros ullamcorper lorem, at euismod augue augue quis leo. Fusce non dui augue. In hac habitasse platea dictumst. Mauris quis lacinia mauris. Proin ut pretium quam. Nam at ex finibus.</p>
-          </div>
+            <button id="submit" disabled type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+              Send
+            </button>
+          </form>
+          <form id="image-form" action="#">
+            <input id="mediaCapture" type="file" accept="image/*" capture="camera">
+            <button id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+              <i class="material-icons">image</i>
+            </button>
+          </form>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- E N D  T E S T I M O N I A L S -->
 
-
-   <!-- C A L L  T O  A C T I O N -->
-  <section id="call-to-action">
-    <div class="container text-center">
-      <h2>Du hast Fragen?</h2>
-      <div class="title-block">
-        <p>Kontaktiere uns jetzt.</p>
-        <a href="mailto:greendata@office.at" class="btn btn-regular">Kontakt</a>
+      <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
       </div>
+
     </div>
-  </section>
-  <!-- E N D  C A L L  T O  A C T I O N -->
+  </main>
+</div>
 
-  <!--  F O O T E R  -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          
-        </div>
-        <div class="col-md-3">
-          <h5>Rechtliches</h5>
-          <ul>
-            <li><a href="impressum.html">Impressum</a></li>
-            <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Seiten</h5>
-          <ul>
-            <li><a href="index.html">Startseite</a></li>
-            <li><a href="neuepflanze.html">Pflanze anlegen</a></li>
-            <li><a href="pflanzendatenbank.html">Pflanzendatenbank</a></li>
-            <li><a href="ueber.html">Über uns</a></li>
-            <li><a href="login.html">Einloggen</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Green Data</h5>
-          <p>Altenberger Str. 69</p>
-		  <p>4040 Linz</p>
-		  <p>Österreich</p>
-          <p><a href="mailto:greendata@office.at" class="external-links">greendata@office.at</a></p>
-        </div>
-      </div> 
-      <div class="divider"></div>
-      <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <a href="#"><i class="icon ion-logo-facebook"></i></a>
-            <a href="#"><i class="icon ion-logo-instagram"></i></a>
-            <a href="#"><i class="icon ion-logo-twitter"></i></a>
-            <a href="#"><i class="icon ion-logo-youtube"></i></a>
-          </div>
-          <div class="col-md-6 col-xs-12">
-            <small>2020 &copy; All rights reserved. Inspiration von <a href="http://templune.com/" target="blank" class="external-links">Templune</a></small>
-          </div>
-      </div>
-    </div>
-  </footer>
-  <!--  E N D  F O O T E R  -->
-    
+<!-- Import and configure the Firebase SDK -->
+<!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+<!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+<script src="/__/firebase/7.24.0/firebase-app.js"></script>
+<script src="/__/firebase/7.24.0/firebase-auth.js"></script>
+<script src="/__/firebase/7.24.0/firebase-storage.js"></script>
+<script src="/__/firebase/7.24.0/firebase-messaging.js"></script>
+<script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
+<script src="/__/firebase/7.24.0/firebase-performance.js"></script>
+<script src="/__/firebase/init.js"></script>
 
-    <!-- External JavaScripts -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="scripts/main.js"></script>
 
-
-  <!-- Import and configure the Firebase SDK -->
-  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
-  <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-  <script src="/__/firebase/7.24.0/firebase-app.js"></script>
-  <script src="/__/firebase/7.24.0/firebase-auth.js"></script>
-  <script src="/__/firebase/7.24.0/firebase-storage.js"></script>
-  <script src="/__/firebase/7.24.0/firebase-messaging.js"></script>
-  <script src="/__/firebase/7.24.0/firebase-firestore.js"></script>
-  <script src="/__/firebase/7.24.0/firebase-performance.js"></script>
-  <script src="/__/firebase/init.js"></script>
-
-  <script src="scripts/main.js"></script>
-
-
-
-  </body>
+<!-- config from firebase project, copied in here - /init.js (line122) does the same -->
+<!--
+  const firebaseConfig = {
+  apiKey: "AIzaSyAosaenPmdfSWvaWfTOI4a640XIOa-XetM",
+  authDomain: "friendlychat-9a087.firebaseapp.com",
+  databaseURL: "https://friendlychat-9a087.firebaseio.com",
+  projectId: "friendlychat-9a087",
+  storageBucket: "friendlychat-9a087.appspot.com",
+  messagingSenderId: "961129509203",
+  appId: "1:961129509203:web:f4981769b954032e0871a6",
+  measurementId: "G-K1VWWLGGZ3"
+  };
+-->
+</body>
 </html>

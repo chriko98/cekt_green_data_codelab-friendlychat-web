@@ -16,6 +16,7 @@ function saveMessage(messageText) {
 }
 */
 
+debugger
 alert("asdf");
 console.log("hauts so hin wie ich dnke?");
 
