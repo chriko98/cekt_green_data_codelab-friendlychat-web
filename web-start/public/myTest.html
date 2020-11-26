@@ -1,8 +1,12 @@
+<!-- APP  NICHT  HOSTEN!!!!!-->
 <!DOCTYPE html>
 <html>
     <body>
         <div id="header">
             <h1>Meine Pflanzendatenbank Test Seite</h1>
+<!--            <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text&#45;&#45;white">-->
+<!--               Sign-in with Google-->
+<!--            </button>-->
         </div>
         <div id="test-infos1">
             <p>Hier kommen Pflanzen hin.</p>
@@ -13,24 +17,27 @@
             <br><br>
         </div>
         <div id="myplantdiv">
-            <button id="magic-button">magicButton</button>
+            Möchtest du eine Pflanze, die Hundsrose, sehen? (Console):
+            <button id="get-plant-button">Get My Plant</button>
             <br><br>
-
+            Möchtest du den Schlafmohna bspeichern?
+            <button id="schlafmohn-button"> Schlafmohn speichern</button>
+            <br><br>
         </div>
 
-
-        <script src="scripts/myTest.js"></script>
         <!-- Import and configure the Firebase SDK -->
         <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
         <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
         <script src="/__/firebase/8.1.1/firebase-app.js"></script>
-<!--        <script src="/__/firebase/8.1.1/firebase-auth.js"></script>-->
+        <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
         <script src="/__/firebase/8.1.1/firebase-storage.js"></script>
         <script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
         <script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
         <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
+
         <script src="/__/firebase/init.js"></script>
 
+        <script src="scripts/myTest.js"></script>
         <!-- config from firebase project, copied in here - /init.js (line122) does the same -->
         <!--
           const firebaseConfig = {
