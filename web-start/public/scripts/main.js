@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 'use strict';
+// testausgabe
+console.log('bitte gib mich aus - YESSS');
 
 // Signs-in Friendly Chat.
 function signIn() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+ // document.getElementsByClassName("message-container")[0].append("<p>asdfasdfasfd</p>");
+  // messageListElement.append("<p>asdf</p>")
 }
 
 // Signs-out of Friendly Chat.
@@ -365,6 +369,7 @@ var userNameElement = document.getElementById('user-name');
 var signInButtonElement = document.getElementById('sign-in');
 var signOutButtonElement = document.getElementById('sign-out');
 var signInSnackbarElement = document.getElementById('must-signin-snackbar');
+
 
 // Saves message on form submit.
 messageFormElement.addEventListener('submit', onMessageFormSubmit);

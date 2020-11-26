@@ -1,0 +1,4 @@
+https://firebase.google.com/docs/reference/js/firebase.firestore.Firestore
+
+
+für die documentation von den codeteilen von firebase (auf die wir keinen einblick haben)
