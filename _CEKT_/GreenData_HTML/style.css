@@ -58,7 +58,7 @@ p {
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: .05em;
-	color: #53627C;
+	color: #ABB2B9;
 }
 
 ul {
@@ -68,6 +68,14 @@ ul {
 
 b {
 	font-weight: 700;
+}
+
+a{
+	color: #3a3f52;
+}
+
+a:hover{
+	color: #28B463;
 }
 
 section {
