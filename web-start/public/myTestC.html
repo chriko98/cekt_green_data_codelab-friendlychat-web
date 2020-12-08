@@ -1,0 +1,82 @@
+<!-- APP  NICHT  HOSTEN!!!!!-->
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="header">
+            <h1>Meine Pflanzendatenbank Test Seite</h1>
+<!--            <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text&#45;&#45;white">-->
+<!--               Sign-in with Google-->
+<!--            </button>-->
+        </div>
+        <div id="test-infos1">
+            <p>Hier kommen Pflanzen hin.</p>
+            <br>
+            <a href='/.'><button>ich bringe dich zur Startseite</button></a>
+            <!--       <br><br> <a href='pflanzendatenbank.html'>ich bringe dich zur Pflanzendatenbank</a>-->
+            <script>console.log("HIER")</script>
+            <br><br>
+        </div>
+        <div id="myplantdiv">
+            Möchtest du eine Pflanze, die Hundsrose, sehen? (Console):
+            <button id="get-plant-button">Get My Plant</button>
+            <br><br>
+            Möchtest du den Schlafmohna bspeichern?
+            <button id="schlafmohn-button"> Schlafmohn speichern</button>
+            <br><br>
+        </div>
+        <div>
+        <form id="test1">
+            <input type="text" name="pname" id="pname" class="input-md form-control" placeholder="Name der Pflanze" maxlength="100">
+            <button type="submit" label="xxx">xxx</button>
+
+            <input type="text" name="ptyp"          id="ptyp" class="input-md form-control" placeholder="Typ" maxlength="100">
+            <input type="text" name="pgebrauchsname"id="pgebrauchsname" class="input-md form-control" placeholder="gebrauchsname" maxlength="100">
+            <input type="text" name="pfamilie"      id="pfamilie" class="input-md form-control" placeholder="Familie" maxlength="100">
+            <input type="text" name="phoehe_m"      id="phoehe_m" class="input-md form-control" placeholder="Höhe" maxlength="100">
+            <input type="text" name="pwasserbedarf_woche" id="pwasserbedarf_woche" class="input-md form-control" placeholder="wasserbedarf_woche" maxlength="100">
+            <input type="text" name="pstandort"     id="pstandort" class="input-md form-control" placeholder="standort" maxlength="100">
+
+        </form>
+        </div>
+
+
+
+
+
+
+
+        <!-- E N D  NEUE PLFANZE -->
+
+        <!-- Import and configure the Firebase SDK -->
+        <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+        <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+        <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+        <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+        <script src="/__/firebase/8.1.1/firebase-storage.js"></script>
+        <script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
+        <script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+        <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
+
+        <script src="/__/firebase/init.js"></script>
+
+        <script src="scripts/myTestC.js"></script>
+        <!-- config from firebase project, copied in here - /init.js (line122) does the same -->
+        <!--
+          const firebaseConfig = {
+          apiKey: "AIzaSyAosaenPmdfSWvaWfTOI4a640XIOa-XetM",
+          authDomain: "friendlychat-9a087.firebaseapp.com",
+          databaseURL: "https://friendlychat-9a087.firebaseio.com",
+          projectId: "friendlychat-9a087",
+          storageBucket: "friendlychat-9a087.appspot.com",
+          messagingSenderId: "961129509203",
+          appId: "1:961129509203:web:f4981769b954032e0871a6",
+          measurementId: "G-K1VWWLGGZ3"
+          };
+        -->
+
+
+
+
+
+    </body>
+</html>
