@@ -65,6 +65,10 @@ function getPlant(id) {
     });
 }
 
+//< - - - - GET ALL PLANTS - - - - - >
+function getAllPlants() {
+    //...
+}
 
 
 //< - - - - PRINTS/OUTPUTS - - - - - >
@@ -143,5 +147,4 @@ function deletePlant(id){
 function getDocRef(id){
     return firebase.firestore().collection("plants").doc(id);
 }
-
 
