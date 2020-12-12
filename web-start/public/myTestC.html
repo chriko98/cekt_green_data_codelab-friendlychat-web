@@ -1,14 +1,60 @@
 <!-- APP  NICHT  HOSTEN!!!!!-->
 <!DOCTYPE html>
 <html>
-    <body>
-        <div id="header">
-            <h1>Meine Pflanzendatenbank Test Seite</h1>
-<!--            <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text&#45;&#45;white">-->
-<!--               Sign-in with Google-->
-<!--            </button>-->
-        </div>
-        <div>
+<body>
+<div id="header">
+    <h1>Meine Pflanzendatenbank Test Seite</h1>
+    <!--            <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text&#45;&#45;white">-->
+    <!--               Sign-in with Google-->
+    <!--            </button>-->
+</div>
+<div id="test-infos1">
+    <a href='/.'><button>ich bringe dich zur Startseite</button></a>
+
+
+    <!--       <br><br> <a href='pflanzendatenbank.html'>ich bringe dich zur Pflanzendatenbank</a>-->
+    <script>console.log("HIER")</script>
+    <br><br><br>
+</div>
+<div id="myplantdiv">
+    FÜR INFO SIEHE KONSOLE (Ausgaben über Erfolg/Misserfolg → [F12])
+    <br><br>
+
+    <h3>GET TESTS</h3>
+    Möchtest du die Pflanze Hundsrose sehen?:
+    <button id="get-hundsrose-button">Hundsrose</button>
+    <br><br>
+    Möchtest du die Pflanze Schlafmohn sehen?:
+    <button id="get-schlafmohn-button">Schlafmohn</button>
+    <br><br>
+
+    <h3>ADD TESTS</h3>
+    Möchtest du den Schlafmohn abspeichern? ("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0)
+    <button id="schlafmohn-button"> Schlafmohn speichern</button>
+    <br><br>
+    Möchtest du eine unvollständige Pflanze speichern? ("FakePlant", "asdf")
+    <button id="falsePlant-button"> FakePlant speichern</button>
+    <br><br>
+
+    <h3>UPDATE TESTS</h3>
+    Möchtest du Schlafmohn updaten? ("Schlafmohn", "asdf", "asdf", 1, "asf", "asdf", 0)
+    <button id="updateSchlafmohn1-button"> update Schlafmohn</button>
+    <br><br>
+    Möchtest du Schlafmohn updaten? ("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0)
+    <button id="updateSchlafmohn2-button"> update Schlafmohn</button>
+    <br><br>
+    Möchtest du Schlafmohn falsch (fehlende felder) updaten? ("Schlafmohn", "asdf", "asdf")
+    <button id="updateSchlafmohn3-button"> update Schlafmohn</button>
+    <br><br>
+
+    <h3>DELETE TESTS</h3>
+    Möchtest du Schlafmohn löschen?
+    <button id="deleteSchlafmohn-button"> Schlafmohn löschen </button>
+
+    <br><br><br><br>
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  -
+    <br><br>
+    </div>
         <form id="test1">
             <input type="text" name="pname" id="pname" class="input-md form-control" placeholder="Name der Pflanze" maxlength="100">
             <button type="submit" label="xxx">xxx</button>
