@@ -10,8 +10,6 @@
 // - - ECHTE PFLANZEN ZUM EINSPEICHERN!!! - -
 // addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
 // addPlant("Dendrobium", "Orchideengewächse", "Orchidee", 1, "hell, keine direkte Sonne", "Zimmerpflanze", 1 );
-// addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
-// addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
 // addPlant("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 // addPlant("Hundsrose", "Rosengwächse", "Rose", 4, "Natur", "Wildpflanze", 0);
 // addPlant("The Fairy", "Rosengwächse", "Rose", 0.5, "sonnig", "Zuchtpflanze", 2);

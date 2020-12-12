@@ -6,7 +6,7 @@
 // }
 
 
-getPlant("Hundsrose");
+//getPlant("Hundsrose");
 // getPlant("The Fairy");
 // addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
 // updatePlant("Roteiche", "abc", "def", 1000, "Natur", "Laubbaum", 0);
@@ -16,7 +16,7 @@ getPlant("Hundsrose");
 
 
 
-
+/*
 function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche){
     var docRef = getDocRef(id);
     docRef.get().then(function(doc) {
@@ -41,11 +41,13 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
         console.log("Error getting document:", error);
     });
 }
+*/
 
 
 
 
 
+/*
 function getPlant(id) {
     var docRef = getDocRef(id);
     docRef.get().then(function(doc) {
@@ -71,8 +73,8 @@ function printPlant(plantObject, id){
     myPlant.innerHTML = id + " " + plantObject.familie + " " + plantObject.gebrauchsname;
     document.getElementById("myplantdiv").append(myPlant);
 }
-
-
+*/
+/*
 function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche){
     var docRef = getDocRef(id);
     docRef.get().then(function(doc) {
@@ -96,8 +98,8 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
         console.log("Error getting document:", error);
     });
 }
-
-
+*/
+/*
 //GEHT NOCH NICHT
 function updateFamilie(id, familie){
     var docRef = getDocRef(id);
@@ -118,25 +120,25 @@ function updateFamilie(id, familie){
         console.log("Error getting document:", error);
     });
 }
-
-
+*/
+/*
 // GET DOC REF
 function getDocRef(id){
     return firebase.firestore().collection("plants").doc(id);
 }
 
+*/
 
 
 
-
-// - - TEST (BUTTON) FUNCTIONS - -
+/*
 function getHundsrose() {
     getPlant("Hundsrose");
 }
 function addSchlafmohn(){
     addPlant("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 }
-
+*/
 function addNewPlantold(){
     //addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
    // let name=document.getElementsByName("pname").value;
@@ -158,15 +160,16 @@ function addNewPlant(){
     let wasserbedarf_woche=document.querySelector("#pwasserbedarf_woche").value;
     console.log(name+familie+gebrauchsname+hoehe_m+standort+typ+wasserbedarf_woche);
    // addPlant(name, familie, gebrauchsname, 1, standort, typ, 1);
+
     addPlant(name, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche);//*/
    // addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 }
 
 
 // < - - - - VARIABLES - - - - >
-var mydiv = document.getElementById("myplantdiv");
-var v_getplant = document.getElementById("get-plant-button");
-var v_saveSchlafmohn = document.getElementById("schlafmohn-button");
+//var mydiv = document.getElementById("myplantdiv");
+//var v_getplant = document.getElementById("get-plant-button");
+//var v_saveSchlafmohn = document.getElementById("schlafmohn-button");
 //var v_newPlant = document.getElementById("pflanze-anlegen");
 //var v_newPlant2 = document.getElementById("formPlanzeAnlegen");
 
@@ -176,9 +179,9 @@ const t1= document.getElementById("test1");
 
 
 //< - - - - EVENT-LISTENERS - - - - - >
-mydiv.append("meine bilder, vermutlich ein img tag oder so");
-v_getplant.addEventListener('click', getHundsrose);
-v_saveSchlafmohn.addEventListener("click", addSchlafmohn);
+//mydiv.append("meine bilder, vermutlich ein img tag oder so");
+//v_getplant.addEventListener('click', getHundsrose);
+//v_saveSchlafmohn.addEventListener("click", addSchlafmohn);
 //v_newPlant.addEventListener("click", addNewPlant);
 //v_newPlant.addEventListener("submit", addNewPlant);
 //v_newPlant2.addEventListener("click", addNewPlant);
