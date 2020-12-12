@@ -9,19 +9,52 @@
 <!--            </button>-->
         </div>
         <div id="test-infos1">
-            <p>Hier kommen Pflanzen hin.</p>
-            <br>
             <a href='/.'><button>ich bringe dich zur Startseite</button></a>
+            <br>
+            <p>Hier kommen Pflanzen hin.</p>
+
+
             <!--       <br><br> <a href='pflanzendatenbank.html'>ich bringe dich zur Pflanzendatenbank</a>-->
             <script>console.log("HIER")</script>
             <br><br>
         </div>
         <div id="myplantdiv">
-            Möchtest du eine Pflanze, die Hundsrose, sehen? (Console):
-            <button id="get-plant-button">Get My Plant</button>
+            FÜR INFO SIEHE KONSOLE (Ausgaben über Erfolg/Misserfolg → [F12])
             <br><br>
-            Möchtest du den Schlafmohna bspeichern?
+
+            <h3>GET TESTS</h3>
+            Möchtest du die Pflanze Hundsrose sehen?:
+            <button id="get-hundsrose-button">Hundsrose</button>
+            <br><br>
+            Möchtest du die Pflanze Schlafmohn sehen?:
+            <button id="get-schlafmohn-button">Schlafmohn</button>
+            <br><br>
+
+            <h3>ADD TESTS</h3>
+            Möchtest du den Schlafmohn abspeichern? ("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0)
             <button id="schlafmohn-button"> Schlafmohn speichern</button>
+            <br><br>
+            Möchtest du eine unvollständige Pflanze speichern? ("FakePlant", "asdf")
+            <button id="falsePlant-button"> FakePlant speichern</button>
+            <br><br>
+
+            <h3>UPDATE TESTS</h3>
+            Möchtest du Schlafmohn updaten? ("Schlafmohn", "asdf", "asdf", 1, "asf", "asdf", 0)
+            <button id="updateSchlafmohn1-button"> update Schlafmohn</button>
+            <br><br>
+            Möchtest du Schlafmohn updaten? ("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0)
+            <button id="updateSchlafmohn2-button"> update Schlafmohn</button>
+            <br><br>
+            Möchtest du Schlafmohn falsch (fehlende felder) updaten? ("Schlafmohn", "asdf", "asdf")
+            <button id="updateSchlafmohn3-button"> update Schlafmohn</button>
+            <br><br>
+
+            <h3>DELETE TESTS</h3>
+            Möchtest du Schlafmohn löschen?
+            <button id="deleteSchlafmohn-button"> Schlafmohn löschen </button>
+
+            <br><br><br><br>
+             - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - -  -
             <br><br>
         </div>
 
@@ -36,8 +69,9 @@
         <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
 
         <script src="/__/firebase/init.js"></script>
+        <script src="scripts/databaseFunctions.js"></script>
+<!--        <script src="scripts/myTest.js"></script>-->
 
-        <script src="scripts/myTest.js"></script>
         <!-- config from firebase project, copied in here - /init.js (line122) does the same -->
         <!--
           const firebaseConfig = {

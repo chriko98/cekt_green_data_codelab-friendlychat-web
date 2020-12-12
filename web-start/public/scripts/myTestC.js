@@ -158,7 +158,7 @@ function addNewPlant(){
     let wasserbedarf_woche=document.querySelector("#pwasserbedarf_woche").value;
     console.log(name+familie+gebrauchsname+hoehe_m+standort+typ+wasserbedarf_woche);
    // addPlant(name, familie, gebrauchsname, 1, standort, typ, 1);
-    addPlant(name, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche);*/
+    addPlant(name, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche);//*/
    // addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 }
 
