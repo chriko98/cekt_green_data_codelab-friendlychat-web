@@ -23,6 +23,7 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                 console.log("Dokument (" + id + ") existiert bereits! Daten:");
                 printPlantConsole(doc.data(),id);
             } else {
+                //TODO: methodenaufruf addNewImgFolder(id) und speichere den return wert (URL) in einer variable
                 console.log(id + " wird gespeichert...");
                 docRef.set({
                     familie: familie,
@@ -31,6 +32,9 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche
+
+                    //TODO: field bilder --> verwende die vorher returnte Variable --> URL vom bilder-storage ordner
+
                 })
                     .then(function() {
                         console.log("Document successfully written!");
@@ -132,6 +136,7 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
 //NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
 function deletePlant(id){
     var docRef = getDocRef(id);
+    //TODO: aufruf methode deleteImageFolder(id)
     docRef.delete().then(function(doc) {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -142,9 +147,19 @@ function deletePlant(id){
 
 
 
-
 // GET DOC REF
 function getDocRef(id){
     return firebase.firestore().collection("plants").doc(id);
 }
 
+
+
+// - - - - - - - - - - - - - - - - - -
+
+//TODO: methode addImageFolder --> legt einen neuen Folder im Storage an, der als ID die ID der Pflanze hat (bspw. Hundsrose)
+
+//TODO: returned den URL des Ordners / den Ort des Ordners? damit auf die fotos zugegriffen werden kann
+
+//TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze
+
+//TODO mehotde deleteImageFolder(id)
