@@ -149,20 +149,22 @@ function addNewPlantold(){
 
 function addNewPlant(){
 
-    //let name=document.querySelector("#pname").value;
+
     //console.log(name);
     console.log("Testausgabe");
+    let name=document.querySelector("#pname").value;
     let familie=    document.querySelector("#pfamilie").value;
     let gebrauchsname=document.querySelector("#pgebrauchsname").value;
     let hoehe_m=    document.querySelector("#phoehe_m").value;
     let standort=   document.querySelector("#pstandort").value;
     let typ=        document.querySelector("#ptyp").value;
     let wasserbedarf_woche=document.querySelector("#pwasserbedarf_woche").value;
-    console.log(name+familie+gebrauchsname+hoehe_m+standort+typ+wasserbedarf_woche);
+   // console.log(name+familie+gebrauchsname+hoehe_m+standort+typ+wasserbedarf_woche);
    // addPlant(name, familie, gebrauchsname, 1, standort, typ, 1);
 
     addPlant(name, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche);//*/
-   // addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
+   // addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche)
+    //addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 }
 
 
@@ -187,5 +189,8 @@ const t1= document.getElementById("test1");
 //v_newPlant2.addEventListener("click", addNewPlant);
 //t1.addEventListener("click", addNewPlant);
 t1.addEventListener("submit", addNewPlant);
+
+function handleForm(event) { event.preventDefault(); }
+t1.addEventListener('submit', handleForm);
 // signInButtonElement.addEventListener('click', signIn);
 
