@@ -167,6 +167,10 @@ function addNewPlant(){
     //addPlant("Test", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
 }
 
+function getPlants(){
+   getAllPlants();
+
+}
 
 // < - - - - VARIABLES - - - - >
 //var mydiv = document.getElementById("myplantdiv");
@@ -174,8 +178,8 @@ function addNewPlant(){
 //var v_saveSchlafmohn = document.getElementById("schlafmohn-button");
 //var v_newPlant = document.getElementById("pflanze-anlegen");
 //var v_newPlant2 = document.getElementById("formPlanzeAnlegen");
-
-const t1= document.getElementById("test1");
+//const t2= document.getElementById("listAll-button");
+//const t1= document.getElementById("test1");
 
 // var signInButtonElement = document.getElementById('sign-in');
 
@@ -188,9 +192,17 @@ const t1= document.getElementById("test1");
 //v_newPlant.addEventListener("submit", addNewPlant);
 //v_newPlant2.addEventListener("click", addNewPlant);
 //t1.addEventListener("click", addNewPlant);
-t1.addEventListener("submit", addNewPlant);
-
-function handleForm(event) { event.preventDefault(); }
-t1.addEventListener('submit', handleForm);
+//t1.addEventListener("submit", addNewPlant);
+//t2.addEventListener('click', getPlants);
+//function handleForm(event) { event.preventDefault(); }
+//t1.addEventListener('submit', handleForm);
 // signInButtonElement.addEventListener('click', signIn);
 
+function sortType(){
+    console.log("feg")
+
+}
+
+//const sortTypeVar = document.getElementById("sortTypeList");
+//sortTypeVar.addEventListener("click", sortType);
+document.getElementById("sortTypeList").onchange = sortType;

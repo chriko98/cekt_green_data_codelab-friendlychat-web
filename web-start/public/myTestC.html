@@ -2,6 +2,17 @@
 <!DOCTYPE html>
 <html>
 <body>
+<script src="/__/firebase/8.1.1/firebase-app.js"></script>
+<script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.1.1/firebase-storage.js"></script>
+<script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
+<script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+<script src="/__/firebase/8.1.1/firebase-performance.js"></script>
+
+<script src="/__/firebase/init.js"></script>
+
+
+<script src="scripts/dbFunctions.js"></script>
 <div id="header">
     <h1>Meine Pflanzendatenbank Test Seite</h1>
     <!--            <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text&#45;&#45;white">-->
@@ -19,6 +30,31 @@
 <div id="myplantdiv">
     FÜR INFO SIEHE KONSOLE (Ausgaben über Erfolg/Misserfolg → [F12])
     <br><br>
+
+
+        <select id ="sortTypeList">
+            <option value="1">nach Familie filtern</option>
+            <option value="2">nach Gebrauchsname filtern</option>
+        </select>
+
+
+
+    <script src="scripts/myTestC.js"></script>
+
+
+
+    <!--
+        <h3>Liste</h3>
+        Liste?:
+        <button id="listAll-button">Liste</button>
+        <br><br>
+        <script>getPlants();</script>
+        <div id="testx">
+            <div id="testy">
+            </div>
+        </div>
+    -->
+
 
     <h3>GET TESTS</h3>
     Möchtest du die Pflanze Hundsrose sehen?:
@@ -82,17 +118,7 @@
         <!-- Import and configure the Firebase SDK -->
         <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
         <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-        <script src="/__/firebase/8.1.1/firebase-app.js"></script>
-        <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
-        <script src="/__/firebase/8.1.1/firebase-storage.js"></script>
-        <script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
-        <script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
-        <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
 
-        <script src="/__/firebase/init.js"></script>
-
-        <script src="scripts/myTestC.js"></script>
-        <script src="scripts/dbFunctions.js"></script>
         <!-- config from firebase project, copied in here - /init.js (line122) does the same -->
         <!--
           const firebaseConfig = {

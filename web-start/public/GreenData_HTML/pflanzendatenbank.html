@@ -22,6 +22,18 @@
 
 
   <body>
+
+  <script src="/__/firebase/8.1.1/firebase-app.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-storage.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+  <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
+
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="../scripts/dbFunctions.js"></script>
+
   
 <!-- N A V B A R -->
   <nav class="navbar navbar-default navbar-expand-lg fixed-top custom-navbar">
@@ -113,19 +125,28 @@
                                 
                                 <div class="right">
                                     <form method="post" action="#" class="form">
-                                        <select class="input-md">
+                                        <select class="input-md" name="sortTypeList" id ="sortTypeList" >
                                             <option></option>
-                                            <option>nach Name filtern</option>
-											<option>nach Typ filtern</option>
-                                            <option>nach Art filtern</option>
-                                            <option>nach Höhe filtern</option>
-                                            <option>nach Gießen filtern</option>
-											<option>nach Standort filtern</option>
-                                           
+                                            <option value="familie">nach Familie filtern</option>
+											<option value="gebrauchsname">nach Gebrauchsname filtern</option>
+                                            <option value="hoehe_m">nach Hoehe filtern</option>
+                                            <option value="standort">nach Standort filtern</option>
+                                            <option value="typ">nach Typ filtern</option>
+											<option value="wasserbedarf_woche">nach Wasserbedarf filtern</option>
+
                                         </select>
                                     </form>
                                 </div>
-							
+                                gleich
+                                <div class="right">
+                                    <form method="post" action="#" class="form">
+                                        <select class="input-md" id ="sortValueList">
+                                            <option></option>
+
+
+                                        </select>
+                                    </form>
+                                </div>
 							</div>
                                 
  
@@ -161,7 +182,7 @@
           
         </div>
        
-          
+          <!--
           <ul>
 			<li><a href="eintrag.html">Pflanze1</a></li>
             <li><a href="eintrag.html">Pfanze2</a></li>
@@ -169,8 +190,27 @@
             <li><a href="#"></a>Pflanze4</li>
             <li><a href="#"></a>Pflanze5</li>
           </ul>
-        
-				
+        -->
+                     <script src="../scripts/plantDatabase.js"></script>
+                     <script>getPlants();</script>
+
+                     <form id="shopping_form">
+                     <table id="plantTable">
+                         <tr>
+                             <th>Name</th>
+                             <th>Familie</th>
+                             <th>Gebrauchsname</th>
+                             <th>Hoehe</th>
+                             <th>Standort</th>
+                             <th>Typ</th>
+                             <th>Wasserbedarf</th>
+                         </tr>
+
+                     </table>
+                     </form>
+
+
+
 		
 		</div>
 		</div>

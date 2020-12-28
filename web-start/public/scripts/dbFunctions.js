@@ -53,6 +53,7 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
 //< - - - - GET PLANT - - - - - >
 function getPlant(id) {
     var docRef = getDocRef(id);
+
     docRef.get().then(function(doc) {
         if (doc.exists) {
             //html
@@ -71,8 +72,85 @@ function getPlant(id) {
 
 //< - - - - GET ALL PLANTS - - - - - >
 function getAllPlants() {
-    //...
+    // Get a reference to the storage service, which is used to create references in your storage bucket
+    /*var storage = firebase.storage();
+
+// Create a storage reference from our storage service
+    var storageRef = storage.ref();
+
+  //  Create a reference under which you want to list
+    var listRef = storageRef.child('plants/uid');
+
+// Find all the prefixes and items.
+    listRef.listAll().then(function(res) {
+        res.prefixes.forEach(function(folderRef) {
+            // All the prefixes under listRef.
+            // You may call listAll() recursively on them.
+        });
+        res.items.forEach(function(itemRef) {
+            // All the items under listRef.
+        });
+    }).catch(function(error) {
+        // Uh-oh, an error occurred!
+    });
+    console.log(listRef)*/
+/*
+    var storageRef = firebase.storage().ref("plants");
+
+    storageRef.listAll().then(function(result) {
+        result.items.forEach(function(imageRef) {
+            // And finally display them
+            console.log(imageRef);
+        });
+    }).catch(function(error) {
+        // Handle any errors
+    });*/
+    var db = firebase.firestore();
+
+    db.collection("plants").where("familie","==","3").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            printAllPlantsHTML(doc.data(), doc.id)
+        });
+    });
+
+
 }
+
+
+
+//< - - - - PRINTS/OUTPUTS - - - - - >
+// - - HTML - -
+function printAllPlantsHTML(plantObject, id){
+// Find a <table> element with id="myTable":
+    var table = document.getElementById("plantTable");
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+    var row = table.insertRow(table.rows.length );
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+
+
+// Add some text to the new cells:
+    cell1.innerHTML = "<a href="+"eintrag.html"+">"+id+"</a>";
+    cell2.innerHTML = plantObject.familie;
+    cell3.innerHTML = plantObject.gebrauchsname;
+    cell4.innerHTML = plantObject.hoehe_m;
+    cell5.innerHTML = plantObject.standort;
+    cell6.innerHTML = plantObject.typ;
+    cell7.innerHTML = plantObject.wasserbedarf_woche;
+
+
+}
+
 
 
 //< - - - - PRINTS/OUTPUTS - - - - - >
