@@ -222,7 +222,7 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
 //NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
 function deletePlant(id){
     var docRef = getDocRef(id);
-    deleteImageFolder(id);
+   // deleteImageFolder(id);
     //TODO: aufruf methode deleteImageFolder(id)
     docRef.delete().then(function(doc) {
         console.log("Document successfully deleted!");
@@ -232,9 +232,10 @@ function deletePlant(id){
     });
 }
 //TODO: Ordner löschen
-function deleteImageFolder(id){
+/*function deleteImageFolder(id){
     const gcs = require('@google-cloud/storage')();
     const functions = require('firebase-functions');
+...
     const bucket = gcs.bucket(functions.config().firebase.storageBucket);
 
     return bucket.deleteFiles({
@@ -248,7 +249,7 @@ function deleteImageFolder(id){
     });
 //https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
 
-}
+}*/
 
 
 
@@ -276,11 +277,11 @@ var uploadTask = storageRef.child('images/mountains.jpg').put(file, metadata)*/
 
 //KARLA
 
-var storageRef = firebase.storage().ref();
+/*var storageRef = firebase.storage().ref();
 
 //File or Blob named ??
-var file = document.id;
-//${id}
+var file = ${id};
+// document.id;
 
 
 // Create the file metadata
@@ -289,7 +290,7 @@ var metadata = {
 };
 
 // Upload file and metadata to the object 'images/file name
-var uploadTask = storageRef.child('images/' + document.id).put(file, metadata);
+var uploadTask = storageRef.child('images/${id}).put(file, metadata);
 
 // Listen for state changes, errors, and completion of the upload.
 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -315,6 +316,8 @@ uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
             case 'storage/canceled':
                 // User canceled the upload
                 break;
+
+            ...
 
             case 'storage/unknown':
                 // Unknown error occurred, inspect error.serverResponse
@@ -351,4 +354,4 @@ https://stackoverrun.com/de/q/10382212
 
 //TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze
 
-//TODO: mehotde deleteImageFolder(id)
+//TODO mehotde deleteImageFolder(id)
