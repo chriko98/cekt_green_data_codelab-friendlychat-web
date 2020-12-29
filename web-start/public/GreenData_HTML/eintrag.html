@@ -71,8 +71,31 @@
     </div>
   </section>
   <!-- E N D  H E R O -->
-  
-  
+
+<script >
+     function Werteliste (querystring) {
+        if (querystring == '') return;
+        var wertestring = querystring.slice(1);
+        var paare = wertestring.split("&");
+        var paar, name, wert;
+        for (var i = 0; i < paare.length; i++) {
+            paar = paare[i].split("=");
+            name = paar[0];
+            wert = paar[1];
+            console.log(name);
+            console.log(wert);
+            name = unescape(name).replace("+", " ");
+            wert = unescape(wert).replace("+", " ");
+            this[name] = wert;
+        }
+    }
+    var liste = new Werteliste(location.search);
+    //console.log(liste);
+    //console.log(liste["name"]);
+</script>
+<!--
+<script type="text/javascript">{document.write(liste["name"]);}</script>
+-->
   <!-- NEUE PFLANZE -->
 
   <section class="page-section">
@@ -93,7 +116,7 @@
                             <form method="post" action="#" id="changePlant" role="form" class="form">
 
                                 <div class="mb-20 mb-md-10">
-                                    <input type="text" name="nameUpdate" id="nameUpdate" class="input-md form-control" placeholder="Name der Pflanze" maxlength="100">
+                                    <input type="text" name="nameUpdate" id="nameUpdate" class="input-md form-control" placeholder="Name der Pflanze" maxlength="100" readonly>
                                 </div>
 
                                 <div class="mb-20 mb-md-10">
@@ -125,7 +148,27 @@
 							<!-- End Form -->
                             
                         </div>
-                        
+                        <script type="text/javascript">{
+
+                            document.getElementById("nameUpdate").placeholder=liste["name"];
+                            document.getElementById("nameUpdate").value=liste["name"];
+                            document.getElementById("familieUpdate").placeholder=liste["familie"];
+                            document.getElementById("familieUpdate").value=liste["familie"];
+                            document.getElementById("typUpdate").placeholder=liste["typ"];
+                            document.getElementById("typUpdate").value=liste["typ"];
+                            document.getElementById("gebrauchsnameUpdate").placeholder=liste["gebrauchsname"];
+                            document.getElementById("gebrauchsnameUpdate").value=liste["gebrauchsname"];
+                            document.getElementById("hoehe_mUpdate").placeholder=liste["hoehe_m"];
+                            document.getElementById("hoehe_mUpdate").value=liste["hoehe_m"];
+                            document.getElementById("standortUpdate").placeholder=liste["standort"];
+                            document.getElementById("standortUpdate").value=liste["standort"];
+                            document.getElementById("wasserbedarf_wocheUpdate").placeholder=liste["wasserbedarf_woche"];
+                            document.getElementById("wasserbedarf_wocheUpdate").value=liste["wasserbedarf_woche"];
+                        }
+
+
+                        </script>
+
                         <!-- End Col -->
                         
                                                 

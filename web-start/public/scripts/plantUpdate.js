@@ -13,6 +13,8 @@ function changePlant(){
 }
 
 
+
+
 // < - - - - VARIABLES - - - - >
 const t1= document.getElementById("changePlant");
 
@@ -25,3 +27,25 @@ t1.addEventListener('submit', handleForm);
 
 // signInButtonElement.addEventListener('click', signIn);
 
+function Werteliste (querystring) {
+    {
+        if (querystring == '') return;
+        var wertestring = querystring.slice(1);
+        var paare = wertestring.split("&");
+        var paar, name, wert;
+        for (var i = 0; i < paare.length; i++) {
+            paar = paare[i].split("=");
+            name = paar[0];
+            wert = paar[1];
+            console.log(name);
+            console.log(wert);
+            name = unescape(name).replace("+", " ");
+            wert = unescape(wert).replace("+", " ");
+
+            this[name] = wert;
+        }
+    }
+    var liste = new Werteliste(location.search);
+    console.log(liste);
+    console.log(liste["name"]);
+}

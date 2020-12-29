@@ -159,7 +159,21 @@ function printAllPlantsHTML(plantObject, id){
 
 
 // Add some text to the new cells:
-    cell1.innerHTML = "<a href="+"eintrag.html"+">"+id+"</a>";
+    cell1.innerHTML = "<a href="+"eintrag.html"
+        +"?name="+encodeURI(id)
+        +"&familie="+encodeURI(plantObject.familie)
+        +"&gebrauchsname="+encodeURI(plantObject.gebrauchsname)
+        +"&hoehe_m="+encodeURI(plantObject.hoehe_m)
+        +"&standort="+encodeURI(plantObject.standort)
+        +"&typ="+encodeURI(plantObject.typ)
+        +"&wasserbedarf_woche="+encodeURI(plantObject.wasserbedarf_woche)
+        +">"
+        +id+"</a>";/*
+    cell1.innerHTML = "<a href="+"eintrag.html"
+       // +"?name="+id
+
+        +">"
+        +id+"</a>";*/
     cell2.innerHTML = plantObject.familie;
     cell3.innerHTML = plantObject.gebrauchsname;
     cell4.innerHTML = plantObject.hoehe_m;
@@ -167,6 +181,9 @@ function printAllPlantsHTML(plantObject, id){
     cell6.innerHTML = plantObject.typ;
     cell7.innerHTML = plantObject.wasserbedarf_woche;
 
+var x = "s s,s";
+
+console.log(encodeURI(x))
 
 }
 
