@@ -94,27 +94,46 @@ function getAllPlants() {
         // Uh-oh, an error occurred!
     });
     console.log(listRef)*/
-/*
-    var storageRef = firebase.storage().ref("plants");
+    /*
+        var storageRef = firebase.storage().ref("plants");
 
-    storageRef.listAll().then(function(result) {
-        result.items.forEach(function(imageRef) {
-            // And finally display them
-            console.log(imageRef);
-        });
-    }).catch(function(error) {
-        // Handle any errors
-    });*/
+        storageRef.listAll().then(function(result) {
+            result.items.forEach(function(imageRef) {
+                // And finally display them
+                console.log(imageRef);
+            });
+        }).catch(function(error) {
+            // Handle any errors
+        });*/
     var db = firebase.firestore();
+    let sort = document.getElementById("sortList").value;
+    let filterType = document.getElementById("filterTypeList").value;
+    let filterValue = document.getElementById("filterValueList").value;
 
-    db.collection("plants").where("familie","==","3").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+
+   // var rowCount = myTable.rows.length;
+
+        //myTable.deleteRow(rowCount);
+
+
+    if (sort == "Name"&&filterValue == "leer") {
+    db.collection("plants").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
             printAllPlantsHTML(doc.data(), doc.id)
         });
     });
-
+    }
+    if (sort == "Name"&&filterValue!="leer") {
+        db.collection("plants").where(filterType, "==", filterValue).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                printAllPlantsHTML(doc.data(), doc.id)
+            });
+        });
+    }
 
 }
 
@@ -128,7 +147,7 @@ function printAllPlantsHTML(plantObject, id){
 
 // Create an empty <tr> element and add it to the 1st position of the table:
     var row = table.insertRow(table.rows.length );
-
+    console.log(row);
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);

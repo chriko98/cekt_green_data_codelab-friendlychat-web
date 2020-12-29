@@ -106,11 +106,14 @@
                                 
                                 <div class="right">
                                     <form method="post" action="#" class="form">
-                                        <select class="input-md">
-                                            <option></option>
-											<option>nach Höhe sortieren</option>
-                                            <option>nach Gießen sortieren</option>
-                                            <option>nach Standort sortieren</option>
+                                        <select class="input-md" name="sortList" id ="sortList">
+                                            <option value="Name">nach Name sortieren</option>
+                                            <option value="familie">nach Familie sortieren</option>
+                                            <option value="gebrauchsname">nach Gebrauchsname sortieren</option>
+                                            <option value="hoehe_m">nach Hoehe sortieren</option>
+                                            <option value="standort">nach Standort sortieren</option>
+                                            <option value="typ">nach Typ sortieren</option>
+                                            <option value="wasserbedarf_woche">nach Wasserbedarf sortieren</option>
                                         </select>
                                     </form>
                                 </div>
@@ -125,8 +128,8 @@
                                 
                                 <div class="right">
                                     <form method="post" action="#" class="form">
-                                        <select class="input-md" name="sortTypeList" id ="sortTypeList" >
-                                            <option></option>
+                                        <select class="input-md" name="filterTypeList" id ="filterTypeList" >
+                                            <option value="leer"></option>
                                             <option value="familie">nach Familie filtern</option>
 											<option value="gebrauchsname">nach Gebrauchsname filtern</option>
                                             <option value="hoehe_m">nach Hoehe filtern</option>
@@ -140,12 +143,15 @@
                                 gleich
                                 <div class="right">
                                     <form method="post" action="#" class="form">
-                                        <select class="input-md" id ="sortValueList">
-                                            <option></option>
+                                        <select class="input-md" id ="filterValueList">
+                                            <option value="leer"></option>
 
 
                                         </select>
                                     </form>
+                                </div>
+                                <div class="title-block">
+                                    <button  class="btn btn-regular" id="deleteFilter">Filter entfernen</button>
                                 </div>
 							</div>
                                 

@@ -1,6 +1,6 @@
 function addNewPlant(){
 
-    let name=document.querySelector("#pname").value;
+    let name=       document.querySelector("#pname").value;
     let familie=    document.querySelector("#pfamilie").value;
     let gebrauchsname=document.querySelector("#pgebrauchsname").value;
     let hoehe_m=    document.querySelector("#phoehe_m").value;
