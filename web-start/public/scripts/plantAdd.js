@@ -25,3 +25,7 @@ t1.addEventListener('submit', handleForm);
 
 // signInButtonElement.addEventListener('click', signIn);
 
+function addNewFolder(){
+
+}
+

@@ -31,7 +31,8 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                     hoehe_m: hoehe_m,
                     standort: standort,
                     typ: typ,
-                    wasserbedarf_woche: wasserbedarf_woche
+                    wasserbedarf_woche: wasserbedarf_woche,
+                    bilder: uploadTask
 
                     //TODO: field bilder --> verwende die vorher returnte Variable --> URL vom bilder-storage ordner
 
@@ -48,6 +49,57 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
     }
 }
 
+function addNewImage(id) {
+// File or Blob named mountains.jpg
+    var file = doc.id;
+
+
+// Create the file metadata
+    var metadata = {
+        contentType: 'image/jpeg'
+    };
+
+// Upload file and metadata to the object 'images/mountains.jpg'
+    var uploadTask = storageRef.child(file.id + '/' + file.id+ date()).put(file, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function (snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+            }
+        }, function () {
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });
+}
 
 
 //< - - - - GET PLANT - - - - - >
@@ -250,6 +302,7 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
 //NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
 function deletePlant(id){
     var docRef = getDocRef(id);
+    deleteImageFolder(id);
     //TODO: aufruf methode deleteImageFolder(id)
     docRef.delete().then(function(doc) {
         console.log("Document successfully deleted!");
@@ -259,7 +312,23 @@ function deletePlant(id){
     });
 }
 
+function deleteImageFolder(id){
+    const gcs = require('@google-cloud/storage')();
+    const functions = require('firebase-functions');
+    const bucket = gcs.bucket(functions.config().firebase.storageBucket);
 
+    return bucket.deleteFiles({
+        prefix: `users/${userId}/`
+    }, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(`All the Firebase Storage files in users/${userId}/ have been deleted`);
+        }
+    });
+//https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
+
+}
 
 // GET DOC REF
 function getDocRef(id){
@@ -277,3 +346,4 @@ function getDocRef(id){
 //TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze
 
 //TODO mehotde deleteImageFolder(id)
+
