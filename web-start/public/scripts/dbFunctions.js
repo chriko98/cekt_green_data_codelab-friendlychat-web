@@ -318,12 +318,12 @@ function deleteImageFolder(id){
     const bucket = gcs.bucket(functions.config().firebase.storageBucket);
 
     return bucket.deleteFiles({
-        prefix: `users/${userId}/`
+        prefix: `id/${id}/`
     }, function(err) {
         if (err) {
             console.log(err);
         } else {
-            console.log(`All the Firebase Storage files in users/${userId}/ have been deleted`);
+            console.log(`All the Firebase Storage files in users/${id}/ have been deleted`);
         }
     });
 //https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
