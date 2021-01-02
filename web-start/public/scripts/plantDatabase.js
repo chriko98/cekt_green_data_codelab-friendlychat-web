@@ -45,11 +45,12 @@ function del(){
     document.getElementById('filterValueList').innerText = null;
     document.getElementById('filterValueList').options.add(new Option("","leer"));
     document.getElementById('filterTypeList').selectedIndex = 0;
-    getPlants();
+    drawNewTable();
 }
 
 document.getElementById("filterTypeList").onchange = sortType;
 document.getElementById("filterValueList").onchange = drawNewTable;
+document.getElementById("sortList").onchange = drawNewTable;
 //document.getElementById("filterValueList").onchange = getPlants;
 
 function drawNewTable(){

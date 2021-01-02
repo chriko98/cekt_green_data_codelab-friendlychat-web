@@ -33,7 +33,7 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche,
-                    bilder: uploadTask
+                   // bilder: uploadTask
 
                     //TODO: field bilder --> verwende die vorher returnte Variable --> URL vom bilder-storage ordner
 
@@ -75,49 +75,10 @@ function getPlant(id) {
 
 //< - - - - GET ALL PLANTS - - - - - >
 function getAllPlants() {
-    // Get a reference to the storage service, which is used to create references in your storage bucket
-    /*var storage = firebase.storage();
-
-// Create a storage reference from our storage service
-    var storageRef = storage.ref();
-
-  //  Create a reference under which you want to list
-    var listRef = storageRef.child('plants/uid');
-
-// Find all the prefixes and items.
-    listRef.listAll().then(function(res) {
-        res.prefixes.forEach(function(folderRef) {
-            // All the prefixes under listRef.
-            // You may call listAll() recursively on them.
-        });
-        res.items.forEach(function(itemRef) {
-            // All the items under listRef.
-        });
-    }).catch(function(error) {
-        // Uh-oh, an error occurred!
-    });
-    console.log(listRef)*/
-    /*
-        var storageRef = firebase.storage().ref("plants");
-
-        storageRef.listAll().then(function(result) {
-            result.items.forEach(function(imageRef) {
-                // And finally display them
-                console.log(imageRef);
-            });
-        }).catch(function(error) {
-            // Handle any errors
-        });*/
     var db = firebase.firestore();
     let sort = document.getElementById("sortList").value;
     let filterType = document.getElementById("filterTypeList").value;
     let filterValue = document.getElementById("filterValueList").value;
-
-
-   // var rowCount = myTable.rows.length;
-
-        //myTable.deleteRow(rowCount);
-
 
     if (sort == "Name"&&filterValue == "leer") {
     db.collection("plants").get().then(function (querySnapshot) {
@@ -131,7 +92,23 @@ function getAllPlants() {
     if (sort == "Name"&&filterValue!="leer") {
         db.collection("plants").where(filterType, "==", filterValue).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                printAllPlantsHTML(doc.data(), doc.id)
+            });
+        });
+    }
+
+    if (sort != "Name"&&filterValue=="leer") {
+        db.collection("plants").orderBy(sort).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                console.log(doc.id, " => ", doc.data());
+                printAllPlantsHTML(doc.data(), doc.id)
+            });
+        });
+    }
+    if (sort != "Name"&&filterValue!="leer") {
+        db.collection("plants").where(filterType, "==", filterValue).orderBy("familie", "desc").then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
                 console.log(doc.id, " => ", doc.data());
                 printAllPlantsHTML(doc.data(), doc.id)
             });
