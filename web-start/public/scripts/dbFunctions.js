@@ -268,7 +268,6 @@ function deletePlant(id){
 
 
 
-
 //TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze - being done
 
 // <        ------ ADD NEW IMG -------        >
@@ -327,7 +326,7 @@ function addNewImage(id) {
 
 
 
-//TODO mehotde deleteImageFolder(id) - being done
+//TODO methode deleteImageFolder(id) - being done
 //TODO NEW: error-catch ! (siehe deletePlant Methode! Achtung: Ausgabe-Test auf diese Methode anpassen!!)
 function deleteImageFolder(id){
     const gcs = require('@google-cloud/storage')();
@@ -344,5 +343,4 @@ function deleteImageFolder(id){
         }
     });
 //https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
-
 }
