@@ -128,8 +128,20 @@ function getAllPlants() {
     if (sort == "Name"&&filterValue!="leer") {
         db.collection("plants").where(filterType, "==", filterValue).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
+                printAllPlantsHTML(doc.data(), doc.id)
+            });
+        });
+    }
+    if (sort != "Name"&&filterValue=="leer") {
+        db.collection("plants").orderBy(sort).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                printAllPlantsHTML(doc.data(), doc.id)
+            });
+        });
+    }
+    if (sort != "Name"&&filterValue!="leer") {
+        db.collection("plants").where(filterType, "==", filterValue).orderBy("familie","desc").then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
                 printAllPlantsHTML(doc.data(), doc.id)
             });
         });
@@ -180,10 +192,6 @@ function printAllPlantsHTML(plantObject, id){
     cell5.innerHTML = plantObject.standort;
     cell6.innerHTML = plantObject.typ;
     cell7.innerHTML = plantObject.wasserbedarf_woche;
-
-var x = "s s,s";
-
-console.log(encodeURI(x))
 
 }
 
