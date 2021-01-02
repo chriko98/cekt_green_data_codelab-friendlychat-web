@@ -36,7 +36,7 @@ t1.addEventListener('submit', handleForm);
 
 
 
-
+// Skript in HTML wegen querystring
 // function Werteliste (querystring) {
 //     {
 //         if (querystring == '') return;

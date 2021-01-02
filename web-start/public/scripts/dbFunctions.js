@@ -79,6 +79,11 @@ function getAllPlants() {
     let sort = document.getElementById("sortList").value;
     let filterType = document.getElementById("filterTypeList").value;
     let filterValue = document.getElementById("filterValueList").value;
+    let operator = "==";
+    if((filterType == "hoehe_m") || (filterType == "wasserbedarf_woche")){
+            operator = "==";
+            filterValue = parseFloat(filterValue);
+    }
 
     if (sort == "Name"&&filterValue == "leer") {
     db.collection("plants").get().then(function (querySnapshot) {
@@ -90,7 +95,7 @@ function getAllPlants() {
     });
     }
     if (sort == "Name"&&filterValue!="leer") {
-        db.collection("plants").where(filterType, "==", filterValue).get().then(function (querySnapshot) {
+        db.collection("plants").where(filterType, operator, filterValue).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 console.log(doc.id, " => ", doc.data());
                 printAllPlantsHTML(doc.data(), doc.id)
@@ -107,18 +112,48 @@ function getAllPlants() {
         });
     }
     if (sort != "Name"&&filterValue!="leer") {
-        db.collection("plants").where(filterType, "==", filterValue).orderBy("familie", "desc").then(function (querySnapshot) {
+        let elements = new Array;
+
+        db.collection("plants").where(filterType, operator, filterValue)/*.orderBy(sort, "desc")*/.get().then(function (querySnapshot) {
+            // orderBy funktioniert in Kombination mit where nicht (fehlende Indexes in Firebase)
             querySnapshot.forEach(function (doc) {
                 console.log(doc.id, " => ", doc.data());
-                printAllPlantsHTML(doc.data(), doc.id)
+
+                elements[elements.length]= new Array(doc.id, doc.data());
+                // console.log(elements);
+               // printAllPlantsHTML(doc.data(), doc.id)
             });
+
+            switch (sort) {
+                case("familie"):
+                    elements.sort(function(a,b){return a[1].familie.localeCompare(b[1].familie);});
+                    break;
+                case("typ"):
+                    elements.sort(function(a,b){return a[1].typ.localeCompare(b[1].typ);});
+                    break;
+                case("hoehe_m"):
+                    elements.sort(function(a,b){return a[1].hoehe_m - b[1].hoehe_m;});
+                    break;
+                case("gebrauchsname"):
+                    elements.sort(function(a,b){return a[1].gebrauchsname.localeCompare(b[1].gebrauchsname);});
+                    break;
+                case("standort"):
+                    elements.sort(function(a,b){return a[1].standort.localeCompare(b[1].standort);});
+                    break;
+                case("wasserbedarf_woche"):
+                    elements.sort(function(a,b){return a[1].wasserbedarf_woche - b[1].wasserbedarf_woche;});
+                    break;
+            }
+            // console.log(elements);
+
+            for (i = 0; i < elements.length; i++) {
+                printAllPlantsHTML(elements[i][1], elements[i][0]);
+            }
         });
+
     }
 
 }
-
-
-
 
 //  <      - - - - PRINTS/OUTPUTS - - - - -        >
 // - - HTML - -
@@ -159,7 +194,8 @@ function printAllPlantsHTML(plantObject, id){
     var cell7 = row.insertCell(6);
 
 // Add some text to the new cells:
-    cell1.innerHTML = "<a href="+"bearbeiten.html"
+    cell1.innerHTML =
+        "<a href="+"bearbeiten.html"
         +"?name="+encodeURI(id)
         +"&familie="+encodeURI(plantObject.familie)
         +"&gebrauchsname="+encodeURI(plantObject.gebrauchsname)
@@ -168,12 +204,7 @@ function printAllPlantsHTML(plantObject, id){
         +"&typ="+encodeURI(plantObject.typ)
         +"&wasserbedarf_woche="+encodeURI(plantObject.wasserbedarf_woche)
         +">"
-        +id+"</a>";/*
-    cell1.innerHTML = "<a href="+"bearbeiten.html"
-       // +"?name="+id
-
-        +">"
-        +id+"</a>";*/
+        +id+"</a>";
     cell2.innerHTML = plantObject.familie;
     cell3.innerHTML = plantObject.gebrauchsname;
     cell4.innerHTML = plantObject.hoehe_m;
@@ -181,13 +212,7 @@ function printAllPlantsHTML(plantObject, id){
     cell6.innerHTML = plantObject.typ;
     cell7.innerHTML = plantObject.wasserbedarf_woche;
 
-    var x = "s s,s";
-
-    console.log(encodeURI(x))
 }
-
-
-
 
 
 //  <        - - - - UPDATE PLANT - - - - -         >
