@@ -182,7 +182,7 @@ function printAllPlantsHTML(plantObject, id){
     var cell7 = row.insertCell(6);
 
 // Add some text to the new cells:
-    cell1.innerHTML = "<a href="+"eintrag.html"
+    cell1.innerHTML = "<a href="+"bearbeiten.html"
         +"?name="+encodeURI(id)
         +"&familie="+encodeURI(plantObject.familie)
         +"&gebrauchsname="+encodeURI(plantObject.gebrauchsname)
@@ -192,7 +192,7 @@ function printAllPlantsHTML(plantObject, id){
         +"&wasserbedarf_woche="+encodeURI(plantObject.wasserbedarf_woche)
         +">"
         +id+"</a>";/*
-    cell1.innerHTML = "<a href="+"eintrag.html"
+    cell1.innerHTML = "<a href="+"bearbeiten.html"
        // +"?name="+id
 
         +">"

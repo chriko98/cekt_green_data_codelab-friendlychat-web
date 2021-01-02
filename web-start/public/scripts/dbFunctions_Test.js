@@ -53,7 +53,6 @@ var v_updateSchlafmohn2 = document.getElementById("updateSchlafmohn2-button");
 var v_updateSchlafmohn3 = document.getElementById("updateSchlafmohn3-button"); //falsches update
 var v_deleteSchlafmohn = document.getElementById("deleteSchlafmohn-button");
 
-// var signInButtonElement = document.getElementById('sign-in');
 
 
 //< - - - - EVENT-LISTENERS - - - - - >
