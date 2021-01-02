@@ -1,10 +1,11 @@
-// < - - - - METHODS - - - - >
-// function signIn() {
-//     // Sign into Firebase using popup auth & Google as the identity provider.
-//     var provider = new firebase.auth.GoogleAuthProvider();
-//     firebase.auth().signInWithPopup(provider);
-// }
 
+// GET DOC REF
+function getDocRef(id){
+    return firebase.firestore().collection("plants").doc(id);
+}
+
+
+// < - - - - - - - - - - - - - - - - - - - PLANT DOCUMENTS - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - >
 
 
 //< - - - - ADD PLANT - - - - - >
@@ -49,57 +50,7 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
     }
 }
 
-function addNewImage(id) {
-// File or Blob named mountains.jpg
-    var file = doc.id;
 
-
-// Create the file metadata
-    var metadata = {
-        contentType: 'image/jpeg'
-    };
-
-// Upload file and metadata to the object 'images/mountains.jpg'
-    var uploadTask = storageRef.child(file.id + '/' + file.id+ date()).put(file, metadata);
-
-// Listen for state changes, errors, and completion of the upload.
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
-
-                case 'storage/canceled':
-                    // User canceled the upload
-                    break;
-
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-            }
-        }, function () {
-            // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
-        });
-}
 
 
 //< - - - - GET PLANT - - - - - >
@@ -191,8 +142,29 @@ function getAllPlants() {
 
 
 
-//< - - - - PRINTS/OUTPUTS - - - - - >
+
+//  <      - - - - PRINTS/OUTPUTS - - - - -        >
 // - - HTML - -
+function printPlantHTML(plantObject, id){
+    //console output
+    printPlantConsole(plantObject,id);
+    let myPlant = document.createElement("p");
+    myPlant.innerHTML = "id: " + id + ", fam.: " + plantObject.familie + ", gebr.name: " + plantObject.gebrauchsname + ", höhe: " + plantObject.hoehe_m
+        + ", standort: " + plantObject.standort + ", typ: " + plantObject.typ + ", wasserb.: " + plantObject.wasserbedarf_woche;
+    document.getElementById("myplantdiv").append(myPlant);
+}
+
+// - - CONSOLE - -
+function printPlantConsole(plantObject, id){
+    console.log("GET PLANT: " + id);
+    //output of whole object data
+    console.log("Objektausgabe: ", plantObject);
+    //console of every field
+    console.log("einzelne Felder: id: " + id + ", fam.: " + plantObject.familie + ", gebr.name: " + plantObject.gebrauchsname + ", höhe: " + plantObject.hoehe_m
+        + ", standort: " + plantObject.standort + ", typ: " + plantObject.typ + ", wasserb.: " + plantObject.wasserbedarf_woche);
+}
+
+// - - ALL PLANTS HTML - -
 function printAllPlantsHTML(plantObject, id){
 // Find a <table> element with id="myTable":
     var table = document.getElementById("plantTable");
@@ -208,7 +180,6 @@ function printAllPlantsHTML(plantObject, id){
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
     var cell7 = row.insertCell(6);
-
 
 // Add some text to the new cells:
     cell1.innerHTML = "<a href="+"eintrag.html"
@@ -233,39 +204,16 @@ function printAllPlantsHTML(plantObject, id){
     cell6.innerHTML = plantObject.typ;
     cell7.innerHTML = plantObject.wasserbedarf_woche;
 
-var x = "s s,s";
+    var x = "s s,s";
 
-console.log(encodeURI(x))
-
-}
-
-
-
-//< - - - - PRINTS/OUTPUTS - - - - - >
-// - - HTML - -
-function printPlantHTML(plantObject, id){
-    //console output
-    printPlantConsole(plantObject,id);
-    let myPlant = document.createElement("p");
-    myPlant.innerHTML = "id: " + id + ", fam.: " + plantObject.familie + ", gebr.name: " + plantObject.gebrauchsname + ", höhe: " + plantObject.hoehe_m
-        + ", standort: " + plantObject.standort + ", typ: " + plantObject.typ + ", wasserb.: " + plantObject.wasserbedarf_woche;
-    document.getElementById("myplantdiv").append(myPlant);
-}
-
-// - - CONSOLE - -
-function printPlantConsole(plantObject, id){
-    console.log("GET PLANT: " + id);
-    //output of whole object data
-    console.log("Objektausgabe: ", plantObject);
-    //console of every field
-    console.log("einzelne Felder: id: " + id + ", fam.: " + plantObject.familie + ", gebr.name: " + plantObject.gebrauchsname + ", höhe: " + plantObject.hoehe_m
-        + ", standort: " + plantObject.standort + ", typ: " + plantObject.typ + ", wasserb.: " + plantObject.wasserbedarf_woche);
+    console.log(encodeURI(x))
 }
 
 
 
 
-//< - - - - UPDATE PLANT - - - - - >
+
+//  <        - - - - UPDATE PLANT - - - - -         >
 //UPDATE FUNCTION - ID SOLL NICHT UPGEDATED WERDEN KÖNNEN!!! ES SOLLEN IMEM RALLE FELDER EINGLESEN WERDEN & DADURCH ALLE "UPGEDATED" auch wenn nur einzelne verändert werden
 function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche){
 
@@ -302,8 +250,13 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
 //NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
 function deletePlant(id){
     var docRef = getDocRef(id);
-    deleteImageFolder(id);
+
     //TODO: aufruf methode deleteImageFolder(id)
+    //TODO NEW: erst aktivieren wenn die Methode keine Code - Errors wirft
+    //erst aufrufen wenn die methode funktioniert! (also ohne code-errors) --> durch die derzeitigen sicherheitsrules sollte ohne code-fehlern die methode in den
+    // catch-Teil springen, da es keine berechtigungen zum löschen gibt!
+    //deleteImageFolder(id);
+
     docRef.delete().then(function(doc) {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -312,6 +265,93 @@ function deletePlant(id){
     });
 }
 
+
+
+// - - - - - - - - - - - - - - - - - - - - - -     IMAGES, IMAGE FOLDERS      - - - - - - - - - - - - - - - - - - - - -
+
+
+
+// - - - - - - - - - - - - - - - - - -
+
+
+
+//TODO: returned den URL des Ordners / den Ort des Ordners? damit auf die fotos zugegriffen werden kann
+
+
+
+
+
+
+//TODO: methode addImageFolder --> legt einen neuen Folder im Storage an, der als ID die ID der Pflanze hat (bspw. Hundsrose)
+
+// function addImageFolder(){
+//
+// }
+
+
+
+
+
+//TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze - being done
+
+// <        ------ ADD NEW IMG -------        >
+function addNewImage(id) {
+// File or Blob named mountains.jpg
+    var file = doc.id;
+
+
+// Create the file metadata
+    var metadata = {
+        contentType: 'image/jpeg'
+    };
+
+// Upload file and metadata to the object 'images/mountains.jpg'
+    var uploadTask = storageRef.child(file.id + '/' + file.id+ date()).put(file, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function (snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+            }
+        }, function () {
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log('File available at', downloadURL);
+            });
+        });
+}
+
+
+
+
+//TODO mehotde deleteImageFolder(id) - being done
+//TODO NEW: error-catch ! (siehe deletePlant Methode! Achtung: Ausgabe-Test auf diese Methode anpassen!!)
 function deleteImageFolder(id){
     const gcs = require('@google-cloud/storage')();
     const functions = require('firebase-functions');
@@ -329,21 +369,3 @@ function deleteImageFolder(id){
 //https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
 
 }
-
-// GET DOC REF
-function getDocRef(id){
-    return firebase.firestore().collection("plants").doc(id);
-}
-
-
-
-// - - - - - - - - - - - - - - - - - -
-
-//TODO: methode addImageFolder --> legt einen neuen Folder im Storage an, der als ID die ID der Pflanze hat (bspw. Hundsrose)
-
-//TODO: returned den URL des Ordners / den Ort des Ordners? damit auf die fotos zugegriffen werden kann
-
-//TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze
-
-//TODO mehotde deleteImageFolder(id)
-
