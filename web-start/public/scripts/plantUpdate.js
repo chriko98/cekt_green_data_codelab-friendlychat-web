@@ -12,6 +12,15 @@ function changePlant(){
 
 }
 
+db.collection("plants").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        if (value == "id") {
+            document.getElementById('addNewImage').options.add(new Option(doc.data().id, doc.data().id));
+        }
+    });
+
+});
+
 
 
 

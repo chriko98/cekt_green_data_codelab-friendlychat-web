@@ -44,9 +44,6 @@
           <li class="nav-item nav-custom-link">
             <a class="nav-link" href="ueber.html">Über uns <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
           </li>
-          <li class="nav-item nav-custom-link btn btn-demo-small">
-            <a class="nav-link" href="login.html">Einloggen <i class="icon ion-ios-arrow-forward icon-mobile"></i></a>
-          </li>
         </ul>
       </div>
     </div>
@@ -54,32 +51,35 @@
   <!-- E N D  N A V B A R -->
   
   <!-- H E R O -->
-  <section id="hero">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-          <img src="images/pflanze3.png" class="img-fluid" alt="Demo image">
-        </div>
-        <div class="col-md-7 content-box hero-content">
-          <span>Pflanzendatenbank</span>
-          <h1>Ein grüner Daumen mit <b>GREEN DATA</b></h1>
-          <p>Alle wichtigen Informationen über deine Pflanze - übersichtlich an einem Ort</p>
-          <a href="pflanzendatenbank.html" class="btn btn-regular">Zur Pflanzendatenbank</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!--  <section id="hero">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
+<!--          <img src="images/pflanze3.png" class="img-fluid" alt="Demo image">-->
+<!--        </div>-->
+<!--        <div class="col-md-7 content-box hero-content">-->
+<!--          <span>Pflanzendatenbank</span>-->
+<!--          <h1>Ein grüner Daumen mit <b>GREEN DATA</b></h1>-->
+<!--          <p>Alle wichtigen Informationen über deine Pflanze - übersichtlich an einem Ort</p>-->
+<!--          <a href="pflanzendatenbank.html" class="btn btn-regular">Zur Pflanzendatenbank</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
   <!-- E N D  H E R O -->
 
   
 <!-- NEUE PFLANZE -->
-
+<!-- !!Notiz!!: evtl. die Option "Pflanze anlegen MIT Foto" gar nicht geben - sondern vl. nur im Nachhinein beim Pflanzen bearbeiten erlauben?
+     Idee/Input: Nach dem Button-Klick "Pflanze anlegen" bei Fehlschlag des Anlegens ein Alert-Popup, bei Erfolg href zur Pflanzendatenbank oderso?
+-->
   <section class="page-section">
                 <div class="container relative">
-                    
+                    </br></br>
                     <h2 class="section-title mb-70 mb-sm-40">
                         Pflanze anlegen
                     </h2>
+                    </br></br>
                     
                     <!-- Row -->
                     <div class="row">
@@ -90,34 +90,37 @@
                             
                             <!-- Form -->
                             <form method="post" action="#" id="neue_Pflanze" role="form" class="form">
-                                
+<!--                                <div id="title-name">Name:</div>-->
                                 <div class="mb-20 mb-md-10">
                                     <input type="text" name="pname" id="pname" class="input-md form-control" placeholder="Name der Pflanze" maxlength="100">
                                 </div>
-                                
+<!--                                <div id="title-typ">Typ:</div>-->
                                 <div class="mb-20 mb-md-10">                                  
                                     <input type="text" name="ptyp" id="ptyp" class="input-md form-control" placeholder="Typ" maxlength="100">
-                                </div>    
-                                
+                                </div>
+<!--                                <div id="title-gbname">Gebrauchsname:</div>-->
                                 <div class="mb-20 mb-md-10">                                  
                                     <input type="text" name="pgebrauchsname" id="pgebrauchsname" class="input-md form-control" placeholder="Gebrauchsname" maxlength="100">
                                 </div>
-
+<!--                                <div id="title-fam">Familie:</div>-->
 								 <div class="mb-20 mb-md-10">                                   
                                     <input type="text" name="pfamilie" id="pfamilie" class="input-md form-control" placeholder="Familie" maxlength="100">
                                 </div>
+<!--                                <div id="title-hoehe">Höhe:</div>-->
 								<div class="mb-20 mb-md-10">                                   
                                     <input type="text" name="phoehe_m" id="phoehe_m" class="input-md form-control" placeholder="Höhe" maxlength="100">
                                 </div>
+<!--                                <div id="title-wasserb">Wasserbedarf pro Woche:</div>-->
                                 <div class="mb-20 mb-md-10">                                   
                                     <input type="text" name="pwasserbedarf_woche" id="pwasserbedarf_woche" class="input-md form-control" placeholder="Wasserbedarf" maxlength="100">
                                 </div>
-
+<!--                                <div id="title-standort">Standort:</div>-->
                                 <div class="mb-20 mb-md-10">
                                     <input type="text" name="pstandort" id="pstandort" class="input-md form-control" placeholder="Standort" maxlength="100">
                                 </div>
+
                                 <div class="title-block">
-                                    <button type="submit" class="btn btn-regular">Pflanze anlegen ohne Foto
+                                    <button type="submit" class="btn btn-regular">Pflanze anlegen ohne Foto</button>
                                 </div>
                             </form>
 							<!-- End Form -->
@@ -202,7 +205,6 @@
             <li><a href="neuepflanze.html">Pflanze anlegen</a></li>
             <li><a href="pflanzendatenbank.html">Pflanzendatenbank</a></li>
             <li><a href="ueber.html">Über uns</a></li>
-            <li><a href="login.html">Einloggen</a></li>
           </ul>
         </div>
         <div class="col-md-3">
