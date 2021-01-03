@@ -1,9 +1,9 @@
 document.getElementById("filterTypeList").onchange = filterValueList;
 document.getElementById("filterValueList").onchange = drawNewTable;
 document.getElementById("sortList").onchange = drawNewTable;
-document.getElementById("deleteFilter").addEventListener("click", del);
+document.getElementById("deleteFilter").addEventListener("click", deleteTable);
 
-function del(){
+function deleteTable(){
     document.getElementById('filterValueList').innerText = null;
     document.getElementById('filterValueList').options.add(new Option("","leer"));
     document.getElementById('filterTypeList').selectedIndex = 0;
