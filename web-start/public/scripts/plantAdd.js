@@ -18,10 +18,7 @@ const t1= document.getElementById("neue_Pflanze");
 //< - - - - EVENT-LISTENERS - - - - - >
 t1.addEventListener("submit", addNewPlant);
 
-//function handleForm(event) { event.preventDefault(); }
-//t1.addEventListener('submit', handleForm);
+function handleForm(event) { event.preventDefault(); }
+t1.addEventListener('submit', handleForm);
 
-function addNewFolder(){
-
-}
 
