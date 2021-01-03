@@ -236,6 +236,7 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche
+                    //TODO: field bilder, aus der DB auslesen
                 })
                     .then(function() {
                         console.log("Document successfully written!");
@@ -296,6 +297,10 @@ function deletePlant(id){
 //TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze - being done
 
 // <        ------ ADD NEW IMG -------        >
+
+//testaufruf!!
+//addNewImage('../images/Bild1.jpg');
+
 function addNewImage(id) {
 // File or Blob named mountains.jpg
     var file = doc.id;
@@ -368,4 +373,10 @@ function deleteImageFolder(id){
         }
     });
 //https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
+}
+
+testAddImage("../images/coffee1.jpg");
+
+function testAddImage(url){
+    //add das image
 }
