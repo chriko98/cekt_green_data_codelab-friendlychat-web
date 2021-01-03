@@ -80,8 +80,8 @@ function getAllPlants() {
     let filterType = document.getElementById("filterTypeList").value;
     let filterValue = document.getElementById("filterValueList").value;
     let operator = "==";
+
     if((filterType == "hoehe_m") || (filterType == "wasserbedarf_woche")){
-            operator = "==";
             filterValue = parseFloat(filterValue);
     }
 

@@ -24,14 +24,11 @@ function filterValueList() {
     var db = firebase.firestore();
 
     let list = document.getElementById("filterTypeList");
-    console.log(list);
     let value = list.value;
     console.log(value);
 
-    switch (value) {
-        case("leer"):
+    if (value == "leer") {
             document.getElementById('filterValueList').options.add(new Option("", "leer"));
-            break;
     }
 
     let elements = new Array;
@@ -41,23 +38,23 @@ function filterValueList() {
 
             switch (value) {
                 case("familie"):
-                    elements[elements.length] = (doc.data().familie, doc.data().familie);
+                    elements[elements.length] = doc.data().familie;
                     //console.log(elements);
                     break;
                 case("typ"):
-                    elements[elements.length] = (doc.data().typ, doc.data().typ);
+                    elements[elements.length] = doc.data().typ;
                     break;
                 case("hoehe_m"):
-                    elements[elements.length] = parseFloat((doc.data().hoehe_m, doc.data().hoehe_m));
+                    elements[elements.length] = parseFloat(doc.data().hoehe_m);
                     break;
                 case("gebrauchsname"):
-                    elements[elements.length] = (doc.data().gebrauchsname, doc.data().gebrauchsname);
+                    elements[elements.length] = doc.data().gebrauchsname;
                     break;
                 case("standort"):
-                    elements[elements.length] = (doc.data().standort, doc.data().standort);
+                    elements[elements.length] = doc.data().standort;
                     break;
                 case("wasserbedarf_woche"):
-                    elements[elements.length] = parseFloat((doc.data().wasserbedarf_woche, doc.data().wasserbedarf_woche));
+                    elements[elements.length] = parseFloat(doc.data().wasserbedarf_woche);
                     break;
             }
             /* alte Auswahlliste mit Duplikaten und ohne Sortierung
