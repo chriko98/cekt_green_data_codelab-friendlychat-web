@@ -33,12 +33,13 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche,
-                   // bilder:     firebase.storage().ref().child(id+'/'+id+'.'+file.type.substr(file.type.search("/")+1));
+                   // bilder: uploadTask
+
+                    //TODO: field bilder --> verwende die vorher returnte Variable --> URL vom bilder-storage ordner
 
                 })
                     .then(function() {
                         console.log("Document successfully written!");
-                        window.location.replace('pflanzendatenbank.html');
                         // console.log(id);
                         //printPlantConsole(doc.data(),id);
                     });
@@ -195,13 +196,13 @@ function printAllPlantsHTML(plantObject, id){
 // Add some text to the new cells:
     cell1.innerHTML =
         "<a href="+"bearbeiten.html"
-        +"?name="+encodeURIComponent(id)
-       /* +"&familie="+encodeURIComponent(plantObject.familie)
-        +"&gebrauchsname="+encodeURIComponent(plantObject.gebrauchsname)
-        +"&hoehe_m="+encodeURIComponent(plantObject.hoehe_m)
-        +"&standort="+encodeURIComponent(plantObject.standort)
-        +"&typ="+encodeURIComponent(plantObject.typ)
-        +"&wasserbedarf_woche="+encodeURIComponent(plantObject.wasserbedarf_woche)*/
+        +"?name="+encodeURI(id)
+        +"&familie="+encodeURI(plantObject.familie)
+        +"&gebrauchsname="+encodeURI(plantObject.gebrauchsname)
+        +"&hoehe_m="+encodeURI(plantObject.hoehe_m)
+        +"&standort="+encodeURI(plantObject.standort)
+        +"&typ="+encodeURI(plantObject.typ)
+        +"&wasserbedarf_woche="+encodeURI(plantObject.wasserbedarf_woche)
         +">"
         +id+"</a>";
     cell2.innerHTML = plantObject.familie;
@@ -234,13 +235,11 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
                     hoehe_m: hoehe_m,
                     standort: standort,
                     typ: typ,
-                    wasserbedarf_woche: wasserbedarf_woche,
-
-
+                    wasserbedarf_woche: wasserbedarf_woche
+                    //TODO: field bilder, aus der DB auslesen
                 })
                     .then(function() {
                         console.log("Document successfully written!");
-                        alert("Änderungen gespeichert");
                     });
             } else {
                 console.log(id + " not found.");
@@ -294,63 +293,6 @@ function deletePlant(id){
 
 
 
-function saveImage(id,file) {
-    var storageRef = firebase.storage().ref();
-    var ImageRef = storageRef.child(id+'/'+id+'_'+new Date().toLocaleString()+'.'+file.type.substr(file.type.search("/")+1));
-    ImageRef.put(file).then(function(snapshot) {
-        alert("Bild hochgeladen");
-        location.reload()
-    });
-}
-/*
-function saveImage(id,file) {
-    // 1 - We add a message with a loading icon that will get updated with the shared image.
-
-        // 2 - Upload the image to Cloud Storage.
-        console.log(firebase.storage());
-        var filePath = id + '/' + "t1";
-        firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
-            // 3 - Generate a public URL for the file.
-            return fileSnapshot.ref.getDownloadURL().then((url) => {
-                // 4 - Update the chat message placeholder with the image's URL.
-                return messageRef.update({
-                    imageUrl: url,
-                    storageUri: fileSnapshot.metadata.fullPath
-                });
-            });
-
-    }).catch(function(error) {
-        console.error('There was an error uploading a file to Cloud Storage:', error);
-    })
-}
-*/
-
- /*
-function saveImage(id,file) {
-    // 1 - We add a message with a loading icon that will get updated with the shared image.
-    firebase.firestore().collection('messages').add({
-        name: "Christian Hummel",
-       // imageUrl: LOADING_IMAGE_URL,
-      //  profilePicUrl: getProfilePicUrl(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function(messageRef) {
-        // 2 - Upload the image to Cloud Storage.
-        var filePath = id + '/' + messageRef.id + '/' + file.name;
-        return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
-            // 3 - Generate a public URL for the file.
-            return fileSnapshot.ref.getDownloadURL().then((url) => {
-                // 4 - Update the chat message placeholder with the image's URL.
-                return messageRef.update({
-                    imageUrl: url,
-                    storageUri: fileSnapshot.metadata.fullPath
-                });
-            });
-        });
-    }).catch(function(error) {
-        console.error('There was an error uploading a file to Cloud Storage:', error);
-    });
-}*/
-
 
 //TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze - being done
 
@@ -358,7 +300,7 @@ function saveImage(id,file) {
 
 //testaufruf!!
 //addNewImage('../images/Bild1.jpg');
-/*
+
 function addNewImage(id) {
 // File or Blob named mountains.jpg
     var file = doc.id;
@@ -437,4 +379,4 @@ testAddImage("../images/coffee1.jpg");
 
 function testAddImage(url){
     //add das image
-}*/
+}
