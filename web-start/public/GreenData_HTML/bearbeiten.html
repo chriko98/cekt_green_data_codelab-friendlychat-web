@@ -24,7 +24,6 @@
   </head>
   
 
-
   <body>
   
 <!-- N A V B A R -->
@@ -57,30 +56,7 @@
     </div>
   </nav>
   <!-- E N D  N A V B A R -->
-  
 
-
-<script >
-     function Werteliste (querystring) {
-        if (querystring == '') return;
-        var wertestring = querystring.slice(1);
-        var paare = wertestring.split("&");
-        var paar, name, wert;
-        for (var i = 0; i < paare.length; i++) {
-            paar = paare[i].split("=");
-            name = paar[0];
-            wert = paar[1];
-            console.log(name);
-            console.log(wert);
-            name = unescape(name).replace("+", " ");
-            wert = unescape(wert).replace("+", " ");
-            this[name] = wert;
-        }
-    }
-    var liste = new Werteliste(location.search);
-    //console.log(liste);
-    //console.log(liste["name"]);
-</script>
 <!--
 <script type="text/javascript">{document.write(liste["name"]);}</script>
 -->
@@ -143,28 +119,8 @@
                                 </div>
                             </form>
 							<!-- End Form -->
-                            
                         </div>
-                        <script type="text/javascript">{
 
-                            document.getElementById("nameUpdate").placeholder=liste["name"];
-                            document.getElementById("nameUpdate").value=liste["name"];
-                            document.getElementById("familieUpdate").placeholder=liste["familie"];
-                            document.getElementById("familieUpdate").value=liste["familie"];
-                            document.getElementById("typUpdate").placeholder=liste["typ"];
-                            document.getElementById("typUpdate").value=liste["typ"];
-                            document.getElementById("gebrauchsnameUpdate").placeholder=liste["gebrauchsname"];
-                            document.getElementById("gebrauchsnameUpdate").value=liste["gebrauchsname"];
-                            document.getElementById("hoehe_mUpdate").placeholder=liste["hoehe_m"];
-                            document.getElementById("hoehe_mUpdate").value=liste["hoehe_m"];
-                            document.getElementById("standortUpdate").placeholder=liste["standort"];
-                            document.getElementById("standortUpdate").value=liste["standort"];
-                            document.getElementById("wasserbedarf_wocheUpdate").placeholder=liste["wasserbedarf_woche"];
-                            document.getElementById("wasserbedarf_wocheUpdate").value=liste["wasserbedarf_woche"];
-                        }
-
-
-                        </script>
 
                         <!-- End Col -->
                         
@@ -174,17 +130,17 @@
                         <div class="col-sm-2 mb-40">
                             </br>
                             <!-- Form -->
-                            <form method="post" action="#" id="form-2" role="form" class="form">
+                            <form method="post" enctype="multipart/form-data" action="#" id="addPicture" role="form" class="form">
                                                                
                                 <div class="mb-20 mb-md-10">
-                                    <label for="exampleInputFile">
+                                    <label for="InputFile">
                                         Foto hochladen
                                     </label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="InputFile" accept="image/*">
                                 </div>
                              
 								<div class="title-block">
-								<a href="#" class="btn btn-regular">Änderungen speichern</a>
+								<button type="submit" a href="#" class="btn btn-regular">Bild hinzufügen
 							  </div>
 								<div class="col-md-20">
 									<img src="images/bild4.jpg" class="img-fluid" alt="Demo image">
@@ -209,7 +165,14 @@
 			<!-- E N D  NEUE PLFANZE -->
 
 
-  
+<h2 class="section-title mb-70 mb-sm-40">
+    Fotos der Pflanze
+</h2>
+</br>
+<ul id="pictures"">
+
+</ul>
+</br></br>
 
   
   
@@ -285,18 +248,44 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="/__/firebase/8.1.1/firebase-app.js"></script>
+<script src="/__/firebase/8.1.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.1.1/firebase-storage.js"></script>
+<script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
+<script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
+<script src="/__/firebase/8.1.1/firebase-performance.js"></script>
 
-    <script src="/__/firebase/8.1.1/firebase-app.js"></script>
-    <script src="/__/firebase/8.1.1/firebase-auth.js"></script>
-    <script src="/__/firebase/8.1.1/firebase-storage.js"></script>
-    <script src="/__/firebase/8.1.1/firebase-messaging.js"></script>
-    <script src="/__/firebase/8.1.1/firebase-firestore.js"></script>
-    <script src="/__/firebase/8.1.1/firebase-performance.js"></script>
+<script src="/__/firebase/init.js"></script>
 
-    <script src="/__/firebase/init.js"></script>
+<script src="../scripts/dbFunctions.js"></script>
+<script src="../scripts/plantUpdate.js"></script>
 
-    <script src="../scripts/dbFunctions.js"></script>
-    <script src="../scripts/plantUpdate.js"></script>
+<script >
+    function Werteliste (querystring) {
+        if (querystring == '') return;
+        var wertestring = querystring.slice(1);
+        var paare = wertestring.split("&");
+        var paar, name, wert;
+        for (var i = 0; i < paare.length; i++) {
+            paar = paare[i].split("=");
+            name = decodeURI(paar[0]);
+            wert = decodeURI(paar[1]);
+            console.log(name);
+            console.log(wert);
+            name = unescape(name).replace("+", " ");
+            wert = unescape(wert).replace("+", " ");
+            this[name] = wert;
+        }
+    }
+    var liste = new Werteliste(location.search);
+    //console.log(liste);
+    //console.log(liste["name"]);
+</script>
+<script type="text/javascript">{
+    prePrint(document.getElementById("nameUpdate").placeholder=liste["name"]);
+}
+</script>
+<script>show(document.getElementById("nameUpdate").placeholder=liste["name"])</script>
 
   </body>
 </html>
