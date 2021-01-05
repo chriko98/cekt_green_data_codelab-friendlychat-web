@@ -24,7 +24,6 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                 console.log("Dokument (" + id + ") existiert bereits! Daten:");
                 printPlantConsole(doc.data(),id);
             } else {
-                //TODO: methodenaufruf addNewImgFolder(id) und speichere den return wert (URL) in einer variable
                 console.log(id + " wird gespeichert...");
                 docRef.set({
                     familie: familie,
@@ -254,13 +253,6 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
 //NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
 function deletePlant(id){
     var docRef = getDocRef(id);
-
-    //TODO: aufruf methode deleteImageFolder(id)
-    //TODO NEW: erst aktivieren wenn die Methode keine Code - Errors wirft
-    //erst aufrufen wenn die methode funktioniert! (also ohne code-errors) --> durch die derzeitigen sicherheitsrules sollte ohne code-fehlern die methode in den
-    // catch-Teil springen, da es keine berechtigungen zum löschen gibt!
-    //deleteImageFolder(id);
-
     docRef.delete().then(function(doc) {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -274,25 +266,36 @@ function deletePlant(id){
 // - - - - - - - - - - - - - - - - - - - - - -     IMAGES, IMAGE FOLDERS      - - - - - - - - - - - - - - - - - - - - -
 
 
+function prePrint(id){
+    var docRef = getDocRef(id);
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
 
-// - - - - - - - - - - - - - - - - - -
+            document.getElementById("nameUpdate").placeholde=id;
+            document.getElementById("nameUpdate").value=liste=id;
+            document.getElementById("familieUpdate").placeholder=doc.data().familie;
+            document.getElementById("familieUpdate").value=doc.data().familie;
+            document.getElementById("typUpdate").placeholder=doc.data().typ;
+            document.getElementById("typUpdate").value=doc.data().typ;
+            document.getElementById("gebrauchsnameUpdate").placeholder=doc.data().gebrauchsname;
+            document.getElementById("gebrauchsnameUpdate").value=doc.data().gebrauchsname;
+            document.getElementById("hoehe_mUpdate").placeholder=doc.data().hoehe_m;
+            document.getElementById("hoehe_mUpdate").value=doc.data().hoehe_m;
+            document.getElementById("standortUpdate").placeholder=doc.data().standort;
+            document.getElementById("standortUpdate").value=doc.data().standort;
+            document.getElementById("wasserbedarf_wocheUpdate").placeholder=doc.data().wasserbedarf_woche;
+            document.getElementById("wasserbedarf_wocheUpdate").value=doc.data().wasserbedarf_woche;
 
-
-
-//TODO: returned den URL des Ordners / den Ort des Ordners? damit auf die fotos zugegriffen werden kann
-
-
-
-
-
-
-//TODO: methode addImageFolder --> legt einen neuen Folder im Storage an, der als ID die ID der Pflanze hat (bspw. Hundsrose)
-
-// function addImageFolder(){
-//
-// }
-
-
+            // return doc;
+        } else {
+            // doc.data() will be undefined in this case
+            console.log(id + " not found.");
+            // return null;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
 
 function saveImage(id,file) {
     var storageRef = firebase.storage().ref();
@@ -302,139 +305,38 @@ function saveImage(id,file) {
         location.reload()
     });
 }
-/*
-function saveImage(id,file) {
-    // 1 - We add a message with a loading icon that will get updated with the shared image.
 
-        // 2 - Upload the image to Cloud Storage.
-        console.log(firebase.storage());
-        var filePath = id + '/' + "t1";
-        firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
-            // 3 - Generate a public URL for the file.
-            return fileSnapshot.ref.getDownloadURL().then((url) => {
-                // 4 - Update the chat message placeholder with the image's URL.
-                return messageRef.update({
-                    imageUrl: url,
-                    storageUri: fileSnapshot.metadata.fullPath
-                });
+function showPicture(id) {
+    var storageRef = firebase.storage().ref();
+    let count = 0;
+    // let id=       document.querySelector("#nameUpdate").value;
+    var listRef = storageRef.child(id);
+
+// Find all the prefixes and items.
+    listRef.listAll().then(function(res) {
+        res.prefixes.forEach(function(folderRef) {
+            console.log(folderRef);
+            // All the prefixes under listRef.
+            // You may call listAll() recursively on them.
+        });
+        res.items.forEach(function(itemRef) {
+            itemRef.getDownloadURL().then((url) => {
+                // Do something with the URL ...#
+                console.log(url);
+                count = count + 1;
+                //document.getElementById('pictures').append('<li><img id="picture' + count + '" src="' + url + '" class="img-fluid" alt="Demo image"></li>');
+                //document.getElementById('picture1').setAttribute("src", url);
+                var img = document.createElement("img");
+                img.src=url;
+                img.class="img-fluid";
+                img.alt="Demo image";
+                img.width=800;
+                document.getElementById('pictures').appendChild(img);
             });
-
-    }).catch(function(error) {
-        console.error('There was an error uploading a file to Cloud Storage:', error);
-    })
-}
-*/
-
- /*
-function saveImage(id,file) {
-    // 1 - We add a message with a loading icon that will get updated with the shared image.
-    firebase.firestore().collection('messages').add({
-        name: "Christian Hummel",
-       // imageUrl: LOADING_IMAGE_URL,
-      //  profilePicUrl: getProfilePicUrl(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(function(messageRef) {
-        // 2 - Upload the image to Cloud Storage.
-        var filePath = id + '/' + messageRef.id + '/' + file.name;
-        return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
-            // 3 - Generate a public URL for the file.
-            return fileSnapshot.ref.getDownloadURL().then((url) => {
-                // 4 - Update the chat message placeholder with the image's URL.
-                return messageRef.update({
-                    imageUrl: url,
-                    storageUri: fileSnapshot.metadata.fullPath
-                });
-            });
+            // All the items under listRef.
         });
     }).catch(function(error) {
-        console.error('There was an error uploading a file to Cloud Storage:', error);
+        // Uh-oh, an error occurred!
     });
-}*/
-
-
-//TODO: methode addImage(...parameter...) --> addet ein Image zum Folder der zugehörigen Pflanze - being done
-
-// <        ------ ADD NEW IMG -------        >
-
-//testaufruf!!
-//addNewImage('../images/Bild1.jpg');
-/*
-function addNewImage(id) {
-// File or Blob named mountains.jpg
-    var file = doc.id;
-
-
-// Create the file metadata
-    var metadata = {
-        contentType: 'image/jpeg'
-    };
-
-// Upload file and metadata to the object 'images/mountains.jpg'
-    var uploadTask = storageRef.child(file.id + '/' + file.id+ date()).put(file, metadata);
-
-// Listen for state changes, errors, and completion of the upload.
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-
-            // A full list of error codes is available at
-            // https://firebase.google.com/docs/storage/web/handle-errors
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
-
-                case 'storage/canceled':
-                    // User canceled the upload
-                    break;
-
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-            }
-        }, function () {
-            // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                console.log('File available at', downloadURL);
-            });
-        });
 }
 
-
-
-
-//TODO methode deleteImageFolder(id) - being done
-//TODO NEW: error-catch ! (siehe deletePlant Methode! Achtung: Ausgabe-Test auf diese Methode anpassen!!)
-function deleteImageFolder(id){
-    const gcs = require('@google-cloud/storage')();
-    const functions = require('firebase-functions');
-    const bucket = gcs.bucket(functions.config().firebase.storageBucket);
-
-    return bucket.deleteFiles({
-        prefix: `id/${id}/`
-    }, function(err) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(`All the Firebase Storage files in users/${id}/ have been deleted`);
-        }
-    });
-//https://stackoverflow.com/questions/37749647/firebasestorage-how-to-delete-directory
-}
-
-testAddImage("../images/coffee1.jpg");
-
-function testAddImage(url){
-    //add das image
-}*/
