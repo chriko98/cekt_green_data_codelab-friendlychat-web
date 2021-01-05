@@ -292,7 +292,36 @@ function deletePlant(id){
 //
 // }
 
+function prePrint(id){
+    var docRef = getDocRef(id);
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
 
+            document.getElementById("nameUpdate").placeholde=id;
+            document.getElementById("nameUpdate").value=liste=id;
+            document.getElementById("familieUpdate").placeholder=doc.data().familie;
+            document.getElementById("familieUpdate").value=doc.data().familie;
+            document.getElementById("typUpdate").placeholder=doc.data().typ;
+            document.getElementById("typUpdate").value=doc.data().typ;
+            document.getElementById("gebrauchsnameUpdate").placeholder=doc.data().gebrauchsname;
+            document.getElementById("gebrauchsnameUpdate").value=doc.data().gebrauchsname;
+            document.getElementById("hoehe_mUpdate").placeholder=doc.data().hoehe_m;
+            document.getElementById("hoehe_mUpdate").value=doc.data().hoehe_m;
+            document.getElementById("standortUpdate").placeholder=doc.data().standort;
+            document.getElementById("standortUpdate").value=doc.data().standort;
+            document.getElementById("wasserbedarf_wocheUpdate").placeholder=doc.data().wasserbedarf_woche;
+            document.getElementById("wasserbedarf_wocheUpdate").value=doc.data().wasserbedarf_woche;
+
+            // return doc;
+        } else {
+            // doc.data() will be undefined in this case
+            console.log(id + " not found.");
+            // return null;
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
 
 function saveImage(id,file) {
     var storageRef = firebase.storage().ref();
@@ -302,6 +331,42 @@ function saveImage(id,file) {
         location.reload()
     });
 }
+
+function showPicture(id) {
+    var storageRef = firebase.storage().ref();
+    let count = 0;
+    // let id=       document.querySelector("#nameUpdate").value;
+    var listRef = storageRef.child(id);
+
+// Find all the prefixes and items.
+    listRef.listAll().then(function(res) {
+        res.prefixes.forEach(function(folderRef) {
+            console.log(folderRef);
+            // All the prefixes under listRef.
+            // You may call listAll() recursively on them.
+        });
+        res.items.forEach(function(itemRef) {
+            itemRef.getDownloadURL().then((url) => {
+                // Do something with the URL ...#
+                console.log(url);
+                count = count + 1;
+                //document.getElementById('pictures').append('<li><img id="picture' + count + '" src="' + url + '" class="img-fluid" alt="Demo image"></li>');
+                //document.getElementById('picture1').setAttribute("src", url);
+                var img = document.createElement("img");
+                img.src=url;
+                img.class="img-fluid";
+                img.alt="Demo image";
+                img.width=800;
+                document.getElementById('pictures').appendChild(img);
+            });
+            // All the items under listRef.
+        });
+    }).catch(function(error) {
+        // Uh-oh, an error occurred!
+    });
+}
+
+
 /*
 function saveImage(id,file) {
     // 1 - We add a message with a loading icon that will get updated with the shared image.
