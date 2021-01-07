@@ -22,8 +22,6 @@ function signIn() {
   // Sign into Firebase using popup auth & Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
- // document.getElementsByClassName("message-container")[0].append("<p>asdfasdfasfd</p>");
-  // messageListElement.append("<p>asdf</p>")
 }
 
 // Signs-out of Friendly Chat.
@@ -391,8 +389,6 @@ mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 // initialize Firebase
 initFirebaseAuth();
 
-// TODO: Enable Firebase Performance Monitoring.
-// TODO: Initialize Firebase Performance Monitoring.
 firebase.performance();
 
 // We load currently existing chat messages and listen to new ones.

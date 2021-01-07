@@ -7,7 +7,6 @@ function changePlant(){
     let standort=   document.querySelector("#standortUpdate").value;
     let typ=        document.querySelector("#typUpdate").value;
     let wasserbedarf_woche=document.querySelector("#wasserbedarf_wocheUpdate").value;
-    //console.log(name+familie+gebrauchsname+hoehe_m+standort+typ+wasserbedarf_woche);
     updatePlant(name, familie, gebrauchsname, hoehe_m, standort, typ, wasserbedarf_woche);//*/
   /*  window.top.location.replace("bearbeiten.html"+
     +encodeURIComponent("?")+"name="+encodeURI(name)

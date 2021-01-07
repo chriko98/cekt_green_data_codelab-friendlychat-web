@@ -29,21 +29,7 @@ function deleteSchlafmohn(){
 
 
 
-//< - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - >
-
-// - - ECHTE PFLANZEN ZUM EINSPEICHERN!!! - -
-// addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
-// addPlant("Dendrobium", "Orchideengewächse", "Orchidee", 1, "hell, keine direkte Sonne", "Zimmerpflanze", 1 );
-// addPlant("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
-// addPlant("Hundsrose", "Rosengwächse", "Rose", 4, "Natur", "Wildpflanze", 0);
-// addPlant("The Fairy", "Rosengwächse", "Rose", 0.5, "sonnig", "Zuchtpflanze", 2);
-
-//< - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - >
-
-
-
 // < - - - - VARIABLES - - - - >
-//var mydiv = document.getElementById("myplantdiv");
 var v_getHundsrose = document.getElementById("get-hundsrose-button");
 var v_getSchlafmohn = document.getElementById("get-schlafmohn-button");
 var v_saveSchlafmohn = document.getElementById("schlafmohn-button");
@@ -56,7 +42,6 @@ var v_deleteSchlafmohn = document.getElementById("deleteSchlafmohn-button");
 
 
 //< - - - - EVENT-LISTENERS - - - - - >
-//mydiv.append("meine bilder, vermutlich ein img tag oder so (div während laufzeit eingefügt))");
 v_getHundsrose.addEventListener('click', getHundsrose);
 v_getSchlafmohn.addEventListener('click', getSchlafmohn);
 v_saveSchlafmohn.addEventListener("click", addSchlafmohn);
@@ -66,15 +51,16 @@ v_updateSchlafmohn2.addEventListener("click", updateSchlafmohn2);
 v_updateSchlafmohn3.addEventListener("click", updateSchlafmohn3);
 v_deleteSchlafmohn.addEventListener("click", deleteSchlafmohn);
 
-// signInButtonElement.addEventListener('click', signIn);
 
 
+//< - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - >
 
+// - - ECHTE TESTPFLANZEN ZUM EINSPEICHERN!!! - -
+// addPlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 );
+// addPlant("Dendrobium", "Orchideengewächse", "Orchidee", 1, "hell, keine direkte Sonne", "Zimmerpflanze", 1 );
+// addPlant("Schlafmohn", "Mohngewächse", "Mohn", 1, "Natur", "Nutzpflanze", 0);
+// addPlant("Hundsrose", "Rosengwächse", "Rose", 4, "Natur", "Wildpflanze", 0);
+// addPlant("The Fairy", "Rosengwächse", "Rose", 0.5, "sonnig", "Zuchtpflanze", 2);
 
-//- - TEST-AUFRUFE - -
-// getPlant("Hundsrose");
-// getPlant("The Fairy");
-// updatePlant("Roteiche", "abc", "def", 1000, "Natur", "Laubbaum", 0);
-// updatePlant("Roteiche", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 )
-//addPlant("falschePflanze", "familie");
-//updatePlant("meaup", "Buchengewächse", "Eiche", 30, "Natur", "Laubbaum", 0 )
+//< - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - >
+

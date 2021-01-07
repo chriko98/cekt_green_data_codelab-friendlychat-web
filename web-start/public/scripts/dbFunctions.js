@@ -32,14 +32,10 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche,
-                   // bilder:     firebase.storage().ref().child(id+'/'+id+'.'+file.type.substr(file.type.search("/")+1));
-
                 })
                     .then(function() {
                         console.log("Document successfully written!");
                         window.location.replace('pflanzendatenbank.html');
-                        // console.log(id);
-                        //printPlantConsole(doc.data(),id);
                     });
             }
         }).catch(function(error) {
@@ -47,8 +43,6 @@ function addPlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserbeda
         });
     }
 }
-
-
 
 
 //< - - - - GET PLANT - - - - - >
@@ -59,12 +53,9 @@ function getPlant(id) {
         if (doc.exists) {
             //html
             printPlantHTML(doc.data(),id);
-
-            // return doc;
         } else {
             // doc.data() will be undefined in this case
             console.log(id + " not found.");
-            // return null;
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
@@ -234,8 +225,6 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
                     standort: standort,
                     typ: typ,
                     wasserbedarf_woche: wasserbedarf_woche,
-
-
                 })
                     .then(function() {
                         console.log("Document successfully written!");
@@ -250,7 +239,7 @@ function updatePlant(id, familie, gebrauchsname, hoehe_m, standort, typ, wasserb
     }
 }
 
-//NICHT GETESTET; DIESE FUNKTION NICHT BENOETIGT (WIRD NOCH GELOESCHT?) - keiner sollte berechtigung haben, außer admin über DB selbst
+//delete ist nicht erlaubt - security rules im firebase project
 function deletePlant(id){
     var docRef = getDocRef(id);
     docRef.delete().then(function(doc) {
@@ -290,7 +279,6 @@ function prePrint(id){
         } else {
             // doc.data() will be undefined in this case
             console.log(id + " not found.");
-            // return null;
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
@@ -309,7 +297,6 @@ function saveImage(id,file) {
 function showPicture(id) {
     var storageRef = firebase.storage().ref();
     let count = 0;
-    // let id=       document.querySelector("#nameUpdate").value;
     var listRef = storageRef.child(id);
 
 // Find all the prefixes and items.
@@ -324,8 +311,6 @@ function showPicture(id) {
                 // Do something with the URL ...#
                 console.log(url);
                 count = count + 1;
-                //document.getElementById('pictures').append('<li><img id="picture' + count + '" src="' + url + '" class="img-fluid" alt="Demo image"></li>');
-                //document.getElementById('picture1').setAttribute("src", url);
                 var img = document.createElement("img");
                 img.src=url;
                 img.class="img-fluid";
